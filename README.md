@@ -316,10 +316,6 @@ The privacy policy (`privacy.html`) includes a comprehensive "Customer Support &
 - [ ] Add multi-language support
 - [ ] Implement dark/light mode toggle
 
-## License
-
-Proprietary - Atlas Logged © 2024
-
 ## Support
 
 For questions or issues:
