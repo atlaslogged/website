@@ -201,9 +201,10 @@ function initGlassSettingsButton() {
         settingsCog.style.display = 'none';
 
         // Create a glass button with water droplet emoji
+        // Size 22.4 = 56px circle (22.4 * 2.5 = 56px) to match Chatwoot widget
         glassSettingsButton = new Button({
             text: '💧',
-            size: 24,
+            size: 22.4,
             type: 'circle',
             tintOpacity: window.glassControls.tintOpacity,
             onClick: () => {
@@ -221,6 +222,10 @@ function initGlassSettingsButton() {
         glassSettingsButton.element.style.zIndex = '9999';
         glassSettingsButton.element.style.cursor = 'pointer';
         glassSettingsButton.element.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+
+        // Remove any blue background - glass effect only
+        glassSettingsButton.element.style.background = 'transparent';
+        glassSettingsButton.element.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.15)';
 
         // Ensure proper touch handling on mobile
         glassSettingsButton.element.style.touchAction = 'manipulation';

@@ -337,12 +337,13 @@
     <script src="js/main.js"></script>
 
     <!-- Liquid Glass Library -->
+    <!-- Load html2canvas first without defer to ensure it's available -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
             integrity="sha512-tdGfZm98xmSMH/MicDIEDr5Oq6K0B3hLuGvhwM7sg/TxJhx3sW1t7NKfYyNYhvNLR6f1b5fZiwzQdCB0+lMGOA=="
-            crossorigin="anonymous"
-            defer></script>
-    <script src="js/liquid-glass-container.js"></script>
-    <script src="js/liquid-glass-button.js"></script>
-    <script src="js/liquid-glass-controls.js"></script>
+            crossorigin="anonymous"></script>
+    <!-- Load liquid glass scripts after html2canvas is ready -->
+    <script src="js/liquid-glass-container.js" defer></script>
+    <script src="js/liquid-glass-button.js" defer></script>
+    <script src="js/liquid-glass-controls.js" defer></script>
 </body>
 </html>
