@@ -318,7 +318,7 @@ The privacy policy (`privacy.html`) includes a comprehensive "Customer Support &
 
 ## License
 
-Proprietary - Atlas Logged © 2024
+Proprietary - Atlas Logged © 2025
 
 ## Support
 
