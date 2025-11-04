@@ -1,0 +1,45 @@
+# Location Intelligence System - Git Ignore
+# Ignore large data files during development
+
+# Raw data downloads (too large for git)
+data/
+!data/.gitkeep
+
+# Node modules
+scripts/node_modules/
+scripts/package-lock.json
+
+# Python cache
+scripts/__pycache__/
+scripts/*.pyc
+scripts/.pytest_cache/
+
+# Processing outputs (temporary)
+scripts/temp/
+scripts/output/
+
+# OS files
+.DS_Store
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+scripts/*.log
+
+# Keep these files in git:
+# - All documentation (docs/)
+# - All scripts (scripts/*.sh, scripts/*.js, scripts/*.py)
+# - Final processed resources (resources/) - will add when ready
+# - README files
+
+# Optional: Include final processed resources if small enough (<5MB)
+# Uncomment when resources are ready for git:
+# !resources/
+# resources/**/*.json
+# resources/**/*.geojson

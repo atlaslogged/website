@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description"
+        content="Atlas Logged Roadmap - See what's coming next for our privacy-first location tracking app.">
+    <meta name="keywords" content="atlas logged, roadmap, upcoming features, future plans">
+    <meta name="theme-color" content="#2563eb">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://atlaslogged.com/roadmap.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://atlaslogged.com/roadmap.html">
+    <meta property="og:site_name" content="Atlas Logged">
+    <meta property="og:title" content="Roadmap - Atlas Logged">
+    <meta property="og:description" content="See what's coming next for Atlas Logged.">
+    <meta property="og:image" content="https://atlaslogged.com/assets/logo.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Roadmap - Atlas Logged">
+    <meta name="twitter:description" content="See what's coming next for Atlas Logged.">
+    <meta name="twitter:image" content="https://atlaslogged.com/assets/logo.png">
+
+    <title>Roadmap - Atlas Logged</title>
+
+    <!-- Apple Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6538725214">
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://app.chatwoot.com">
+    <link rel="dns-prefetch" href="https://apps.apple.com">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <style>
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .roadmap-column {
+            background: #f8fafc;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .roadmap-column h3 {
+            margin: 0 0 0.5rem 0;
+            color: #1e293b;
+            font-size: 1.25rem;
+        }
+
+        .roadmap-column .status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .status.available { background: #dcfce7; color: #166534; }
+        .status.next { background: #fef3c7; color: #92400e; }
+        .status.soon { background: #dbeafe; color: #1e40af; }
+        .status.future { background: #f3e8ff; color: #6b21a8; }
+
+        .feature-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .feature-card h4 {
+            margin: 0 0 0.5rem 0;
+            color: #1e293b;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- SVG Filters for Subtle Glass Distortion (Chromium only) -->
+    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
+        <defs>
+            <filter id="glass-distortion" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
+                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="1" seed="7" result="noise" />
+                <feGaussianBlur in="noise" stdDeviation="1.5" result="smooth" />
+                <feDisplacementMap in="SourceGraphic" in2="smooth" scale="3" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <a href="index.html" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+                        <img src="assets/logo.png" alt="Atlas Logged" class="nav-logo">
+                        <span class="brand-name">Atlas Logged</span>
+                    </a>
+                </div>
+
+                <!-- Hamburger Menu Button -->
+                <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </button>
+
+                <!-- Navigation Links -->
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#features">Features</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="location-faq.html">Location FAQ</a>
+                    <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214?itscg=30200&itsct=apps_box_badge&mttnsubad=6538725214"
+                        target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download Atlas Logged (opens in new window)">Download</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Roadmap Section -->
+        <section class="privacy">
+            <div class="container">
+                <img src="assets/logo.png" alt="Atlas Logged" class="section-logo">
+                <h1>Product Roadmap</h1>
+                <p class="intro">See what we're building next. Our roadmap reflects our commitment to privacy, performance, and powerful travel insights.</p>
+
+                <div class="roadmap-grid">
+                    <!-- Available Now -->
+                    <div class="roadmap-column">
+                        <h3>Available Now</h3>
+                        <span class="status available">🟢 Live</span>
+
+                        <div class="feature-card">
+                            <h4>📅 Travel Planner</h4>
+                            <p>Plan your future travels and visualize upcoming journeys</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h4>☁️ iCloud Sync</h4>
+                            <p>Free file-based sync and premium automatic CloudKit sync</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h4>🌍 Arabic Support</h4>
+                            <p>Complete right-to-left interface for Arabic speakers</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h4>🗺️ Map View</h4>
+                            <p>Visualize your travels on an interactive map</p>
+                        </div>
+                    </div>
+
+                    <!-- Next Up (In Development) -->
+                    <div class="roadmap-column">
+                        <h3>Next Up</h3>
+                        <span class="status next">🟡 In Development</span>
+
+                        <div class="feature-card">
+                            <h4>📸 Photo Integration</h4>
+                            <p>Import your travel history from photo metadata in your camera roll</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h4>⚡ Performance Boost</h4>
+                            <p>Faster app launch and smoother scrolling, even with years of data</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h4>📊 Enhanced Stats</h4>
+                            <p>More detailed insights into your travel patterns and history</p>
+                        </div>
+                    </div>
+
+                    <!-- Coming Soon -->
+                    <div class="roadmap-column">
+                        <h3>Coming Soon</h3>
+                        <span class="status soon">🔵 Planned</span>
+
+                        <div class="feature-card">
+                            <h4>🤖 Smart Predictions</h4>
+                            <p>AI-powered predictions of your next destination based on travel patterns</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h4>✈️ Visa Tracking</h4>
+                            <p>Never overstay! Get warnings before reaching visa time limits</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h4>💰 Premium Features</h4>
+                            <p>Early access to new features before general release</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h4>📝 Advanced Notes</h4>
+                            <p>Rich notes with timestamps for each location and journey</p>
+                        </div>
+                    </div>
+
+                    <!-- Future Vision -->
+                    <div class="roadmap-column">
+                        <h3>Future Vision</h3>
+                        <span class="status future">⚪ Exploring</span>
+
+                        <div class="feature-card">
+                            <h4>🖥️ Mac App</h4>
+                            <p>Full-featured desktop companion for macOS</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h4>👪 Family Sharing</h4>
+                            <p>Share and coordinate travels with family members</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h4>🔌 Third-Party Integrations</h4>
+                            <p>Connect with calendar, expense, and health apps</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <h4>🌐 Web Dashboard</h4>
+                            <p>View your travel history from any browser</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="policy-content">
+                    <div class="policy-highlight">
+                        <p><strong>Our Commitment:</strong> All features will maintain our privacy-first approach. Your data stays on your device unless you explicitly choose to sync via iCloud. We'll never collect, sell, or share your location data.</p>
+                        <p style="margin-top: 1rem;">Have a feature idea? <a href="mailto:support@atlascodes.ai" style="color: #2563eb; text-decoration: none;">Let us know!</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section class="download">
+            <div class="container">
+                <img src="assets/logo.png" alt="Atlas Logged" class="section-logo">
+                <h2>Download Atlas Logged</h2>
+                <p>Start tracking your travels with complete privacy</p>
+
+                <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214?itscg=30200&itsct=apps_box_badge&mttnsubad=6538725214"
+                    target="_blank" rel="noopener noreferrer" style="display: inline-block;" aria-label="Download Atlas Logged on the App Store (opens in new window)">
+                    <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/white/en-us?releaseDate=1723766400"
+                        alt="Download on the App Store"
+                        style="width: 246px; height: 82px; vertical-align: middle; object-fit: contain;" loading="lazy" />
+                </a>
+
+                <p class="requirements">Requires iOS 17.0 or later</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="Atlas Logged">
+                    <p>Privacy-first location tracking</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html#features">Features</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="location-faq.html">Location FAQ</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Atlas Logged. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatwoot Widget -->
+    <script>
+        window.chatwootSettings = {
+            hideMessageBubble: false,
+            position: "right",
+            locale: "en"
+        };
+
+        (function (d, t) {
+            var BASE_URL = "https://app.chatwoot.com";
+            var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            g.src = BASE_URL + "/packs/js/sdk.js";
+            g.defer = true;
+            g.async = true;
+            s.parentNode.insertBefore(g, s);
+            g.onload = function () {
+                window.chatwootSDK.run({
+                    websiteToken: 'xiyWsj719fc5BZUsg8i4n88i',
+                    baseUrl: BASE_URL
+                })
+            }
+        })(document, "script");
+    </script>
+
+    <!-- Feature Flags -->
+    <script src="js/feature-flags.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

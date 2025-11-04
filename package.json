@@ -1,0 +1,44 @@
+{
+  "name": "atlas-logged-website",
+  "version": "1.0.0",
+  "description": "Atlas Logged landing page and roadmap",
+  "private": true,
+  "scripts": {
+    "apps-script:push": "cd apps-script && clasp push",
+    "apps-script:pull": "cd apps-script && clasp pull",
+    "apps-script:deploy": "cd apps-script && clasp deploy",
+    "apps-script:info": "cd apps-script && clasp deployments",
+    "dev": "python3 -m http.server 8000",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:chromium": "playwright test --project=chromium",
+    "test:e2e:voting": "playwright test --project=chromium --grep 'Voting Flow'",
+    "test:e2e:submission": "playwright test --project=chromium --grep 'Feature Submission'",
+    "test:e2e:performance": "playwright test --project=chromium --grep 'Performance and Responsive Design'",
+    "test:e2e:accessibility": "playwright test --project=chromium --grep 'Accessibility'",
+    "test:e2e:cleanup": "playwright test --project=chromium test/e2e/cleanup.spec.js",
+    "test:e2e:slow": "playwright test --config=playwright.slow.config.js --project=chromium",
+    "test:e2e:report": "playwright show-report test/e2e-results/html",
+    "cleanup:test-features": "node test/scripts/cleanup-test-features.js",
+    "benchmark": "node test/benchmark/benchmark-api.js",
+    "benchmark:compare": "node test/benchmark/compare-benchmarks.js"
+  },
+  "devDependencies": {
+    "@google/clasp": "^2.4.2",
+    "@playwright/test": "^1.56.1",
+    "chalk": "^4.1.2",
+    "jest": "^29.7.0",
+    "node-fetch": "^2.7.0"
+  },
+  "keywords": [
+    "atlas-logged",
+    "location-tracking",
+    "roadmap"
+  ],
+  "author": "Atlas Logged Team",
+  "license": "UNLICENSED"
+}

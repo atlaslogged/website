@@ -1,0 +1,51 @@
+{
+  "timestamp": "2025-10-30T12:11:16.685Z",
+  "runs": 5,
+  "results": [
+    {
+      "name": "Warm Container",
+      "min": 1428,
+      "avg": 1585,
+      "max": 1886,
+      "runs": 5,
+      "successful": 5,
+      "failed": 0
+    },
+    {
+      "name": "Vote (First Time)",
+      "min": 2042,
+      "avg": 2876,
+      "max": 3589,
+      "runs": 5,
+      "successful": 5,
+      "failed": 0
+    },
+    {
+      "name": "Vote (Cached Row)",
+      "min": 2106,
+      "avg": 2655,
+      "max": 3331,
+      "runs": 5,
+      "successful": 5,
+      "failed": 0
+    },
+    {
+      "name": "Get Features (Cache Hit)",
+      "min": 2542,
+      "avg": 3006,
+      "max": 3709,
+      "runs": 5,
+      "successful": 5,
+      "failed": 0
+    },
+    {
+      "name": "Get Features (Cache Miss)",
+      "min": 1448,
+      "avg": 1561,
+      "max": 1791,
+      "runs": 5,
+      "successful": 5,
+      "failed": 0
+    }
+  ]
+}

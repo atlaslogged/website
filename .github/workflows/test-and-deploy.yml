@@ -1,0 +1,81 @@
+name: Test and Deploy
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Allow manual workflow runs
+  workflow_dispatch:
+
+jobs:
+  check-and-deploy:
+    name: Check and Deploy
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Minimal checks - fast sanity tests before deploy
+      - name: Check HTML syntax (index.html)
+        run: |
+          if ! grep -q "<!DOCTYPE html>" index.html; then
+            echo "Error: index.html missing DOCTYPE"
+            exit 1
+          fi
+          echo "✓ HTML structure looks good"
+
+      - name: Check required files exist
+        run: |
+          required_files=(
+            "index.html"
+            "privacy.html"
+            "css/style.css"
+            "js/main.js"
+            "js/cookie-consent.js"
+            "CNAME"
+          )
+
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "Error: Required file missing: $file"
+              exit 1
+            fi
+          done
+          echo "✓ All required files present"
+
+      - name: Check for obvious JavaScript errors
+        run: |
+          # Check for common syntax errors in JS files
+          if grep -r "console.eror\|consle.log\|fucntion\|functio " js/*.js; then
+            echo "Warning: Found potential typos in JavaScript files"
+          fi
+          echo "✓ No obvious JS syntax errors"
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

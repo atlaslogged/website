@@ -1,0 +1,30 @@
+# Clasp Ignore File
+# Files/folders listed here won't be uploaded to Apps Script
+
+# Documentation
+*.md
+README.md
+UPDATE-INSTRUCTIONS.md
+CLASP-SETUP.md
+
+# Clasp config
+.clasp.json
+.claspignore
+
+# Source files (Code.js is used by Apps Script, Code.gs is for git reference)
+Code.gs
+
+# Node.js
+package.json
+package-lock.json
+node_modules/
+
+# Git
+.git/
+.gitignore
+
+# Editor files
+.DS_Store
+.vscode/
+*.swp
+*.swo

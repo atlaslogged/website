@@ -1,0 +1,116 @@
+# Atlas Logged
+> Privacy-first location tracking iOS app. Automatically tracks your travels with complete data privacy - all data stays on your device.
+
+Atlas Logged is a mobile application for iOS that provides automatic location tracking with configurable privacy levels. The app is designed for travelers who want to maintain a personal travel history without compromising their privacy. All location data is stored locally on the user's device by default, with optional iCloud sync.
+
+## Latest Updates
+- [What's New](https://atlaslogged.com/changelog.html): Latest version (1.1.20) includes Travel Planner, iCloud sync options, and Arabic language support
+- [Roadmap](https://atlaslogged.com/roadmap.html): Upcoming features including photo integration, smart predictions, and visa tracking
+
+## Product Information
+- [Home](https://atlaslogged.com/): Main landing page with feature overview and download link
+- [App Store](https://apps.apple.com/us/app/atlas-logged/id6538725214): Download Atlas Logged for iOS (requires iOS 17.0 or later)
+
+## Key Features
+- Automatic location tracking with 4 privacy levels: Country, City, Precise, and Maximum
+- 100% on-device data storage with optional iCloud sync
+- Battery efficient: Less than 1% battery usage per day
+- Travel calendar with visual history and statistics
+- Manual entry fallback for privacy-conscious users
+- Photo integration with travel timeline
+
+## Privacy & Support
+- [Privacy Policy](https://atlaslogged.com/privacy.html): Complete transparency about data handling - no collection, no transmission, uses only Apple's native frameworks (Core Location, Core Data, CloudKit)
+- [Location FAQ](https://atlaslogged.com/location-faq.html): Common questions about location permissions, battery usage, and iOS background tracking
+
+## Technical Details
+- Platform: iOS 17.0 or later
+- Technologies: Core Location, Core Data, CloudKit (optional), PhotoKit (optional)
+- Price: Free
+- Developer: Atlas Codes
+- Contact: support@atlascodes.ai
+
+## Use Cases
+Atlas Logged is ideal for travelers, digital nomads, frequent business travelers, and anyone who wants to maintain a private record of places they've visited. The app emphasizes user privacy and data ownership over cloud-based tracking solutions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Version History
+
+## Version 1.2.0 - 2026-03-11
+Introducing Unified Onboarding & Smart Update System
+
+### New Features
+- **Unified Onboarding System**: Seamless first-time experience with smart update announcements
+- **Video Feature Announcements**: See what's new with beautiful feature videos
+- **Smart Update Detection**: Automatically shows you relevant updates and settings to review
+
+### Improvements
+- **Onboarding Flow**: Screens now work in multiple contexts (standalone, updates, reviews)
+- **Performance**: Faster app launch with optimized video caching
+
+### Bug Fixes
+- **Permission Handling**: Better handling of location permissions across app lifecycle
+
+---
+
+## Version 1.1.18 - 2025-02-12
+Minor Changes and Fixes
+
+### Improvements
+- **Localization**: Improved localization support
+- **Performance**: Performance improvements for log view
+
+### Bug Fixes
+- **Donation History**: Fixed donation history display issues
+- **Map View**: Fixed map view rendering problems
+
+---
+
+## Version 1.1.17 - 2025-02-11
+New Features
+
+### New Features
+- **Future Logs Visualization**: Future logs are shown with reduced opacity
+- **Early Access Log View**: *Early access log view improvements + tsv export
+- **Early Access Map View**: *Early access map view added
+
+### Improvements
+- **Launch Performance**: Launch and manual log performance improvements
+- **Location Change Threshold**: Updated Location Change threshold steps
+
+### Bug Fixes
+- **Manual Entry**: Fixed manual entry issues where calendar wasn't reflecting the logs correctly
+- **Country Stay**: Country Stay new year split bug fix
+- **Donation View**: Small update to donation view
+
+---
+
+## Version 1.1.16 - 2025-02-03
+New sharing feature :)
+
+### New Features
+- **Sharing Feature**: Share your travel stats and achievements
+
+---
+
+## Version 1.1.15 - 2025-02-01
+hola! :) added Spanish localisation
+
+### New Features
+- **Spanish Localization**: Full Spanish language support
+
+---
+

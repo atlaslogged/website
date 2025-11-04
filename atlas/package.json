@@ -1,0 +1,23 @@
+{
+  "name": "location_improvements",
+  "version": "1.0.0",
+  "description": "**Status:** 📋 Data Gathering Phase **Created:** October 30, 2025 **Purpose:** Prepare all data and resources for Atlas Logged's enhanced geographic system",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "d3-geo": "^3.1.1",
+    "geojson-precision": "^1.0.0",
+    "shapefile": "^0.6.6",
+    "three": "^0.180.0",
+    "topojson-simplify": "^3.0.3"
+  }
+}

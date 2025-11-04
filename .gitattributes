@@ -1,0 +1,2 @@
+# All videos are small enough to commit directly (no LFS needed)
+# Removed LFS tracking to simplify deployment

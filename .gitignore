@@ -1,0 +1,33 @@
+# Apps Script
+apps-script/.clasp.json
+
+# Node.js
+node_modules/
+# package-lock.json should be committed for reproducible CI/CD builds
+
+# Test Results
+test-results/
+test/e2e-results/
+test/coverage/
+
+# Test Logs
+test*.log
+apps-script/test*.log
+
+# Benchmark Results (keep dated ones, ignore temp ones)
+test/results/benchmark-BEFORE-*.json
+test/results/benchmark-AFTER-*.json
+test/results/benchmark-FIXED-*.json
+test/results/benchmark-optimized-*.log
+
+# Editor
+.DS_Store
+.vscode/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+*.log
+test-results/

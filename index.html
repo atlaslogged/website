@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Atlas Logged - Privacy-first location tracking for iOS. Track your travels automatically with complete data privacy.">
+    <meta name="keywords" content="location tracking, privacy, iOS app, travel tracker, country tracker">
+    <meta name="theme-color" content="#2563eb">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://atlaslogged.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://atlaslogged.com/">
+    <meta property="og:site_name" content="Atlas Logged">
+    <meta property="og:title" content="Atlas Logged - Privacy-First Location Tracking">
+    <meta property="og:description" content="Track your travels automatically with complete data privacy. All data stays on your device.">
+    <meta property="og:image" content="https://atlaslogged.com/assets/logo.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Atlas Logged - Privacy-First Location Tracking">
+    <meta name="twitter:description" content="Track your travels automatically with complete data privacy. All data stays on your device.">
+    <meta name="twitter:image" content="https://atlaslogged.com/assets/logo.png">
+
+    <title>Atlas Logged - Privacy-First Location Tracking</title>
+
+    <!-- Apple Smart App Banner -->
+    <meta name="apple-itunes-app" content="app-id=6538725214">
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://app.chatwoot.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://apps.apple.com">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="assets/logo.png" as="image">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/liquid-glass.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Atlas Logged",
+        "operatingSystem": "iOS 17.0 or later",
+        "applicationCategory": "TravelApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Privacy-first location tracking for iOS. Track your travels automatically with complete data privacy. All data stays on your device.",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "ratingCount": "1"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Atlas Codes"
+        }
+    }
+    </script>
+</head>
+<body>
+
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- SVG Filters for Subtle Glass Distortion (Chromium only) -->
+    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
+        <defs>
+            <!-- Very subtle distortion filter - barely noticeable -->
+            <filter id="glass-distortion" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
+                <feTurbulence
+                    type="fractalNoise"
+                    baseFrequency="0.01 0.01"
+                    numOctaves="1"
+                    seed="7"
+                    result="noise" />
+                <feGaussianBlur in="noise" stdDeviation="1.5" result="smooth" />
+                <feDisplacementMap
+                    in="SourceGraphic"
+                    in2="smooth"
+                    scale="3"
+                    xChannelSelector="R"
+                    yChannelSelector="G" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <img src="assets/logo.png" alt="Atlas Logged" class="nav-logo">
+                    <span class="brand-name">Atlas Logged</span>
+                </div>
+
+                <!-- Hamburger Menu Button -->
+                <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </button>
+
+                <!-- Navigation Links -->
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="location-faq.html">Location FAQ</a>
+                    <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214?itscg=30200&itsct=apps_box_badge&mttnsubad=6538725214" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download Atlas Logged (opens in new window)">Download</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="assets/logo.png" alt="Atlas Logged" class="hero-logo">
+                <h1>Atlas Logged</h1>
+                <p class="tagline">Privacy-First Location Tracking</p>
+                <p class="subtitle">Track your travels. Own your data.</p>
+
+                <!-- Original CDN badge (kept for reference) -->
+                <!-- <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214?itscg=30200&itsct=apps_box_badge&mttnsubad=6538725214" target="_blank" rel="noopener noreferrer" style="display: inline-block;" aria-label="Download Atlas Logged on the App Store (opens in new window)">
+                    <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/white/en-us?releaseDate=1723766400" alt="Download on the App Store" style="width: 246px; height: 82px; vertical-align: middle; object-fit: contain;" loading="lazy" />
+                </a> -->
+
+                <!-- Local App Store badge with link -->
+                <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214?itscg=30200&itsct=apps_box_badge&mttnsubad=6538725214" target="_blank" rel="noopener noreferrer" style="display: inline-block;" aria-label="Download Atlas Logged on the App Store (opens in new window)">
+                    <img src="assets/app-store-badge.svg" alt="Download on the App Store" style="width: 246px; height: 82px; vertical-align: middle; object-fit: contain;" loading="lazy" />
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Simple. Private. Powerful.</h2>
+
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon" role="img" aria-label="Lock icon">🔒</div>
+                    <h3>100% Private</h3>
+                    <p>All data stays on your device if you choose. No collection, no transmission, no tracking.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon" role="img" aria-label="Globe icon">🌍</div>
+                    <h3>Auto Tracking</h3>
+                    <p>Automatically logs countries and cities you visit with configurable privacy levels.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon" role="img" aria-label="Battery icon">🔋</div>
+                    <h3>Battery Efficient</h3>
+                    <p>Less than 1% battery usage per day. Smart location updates only when needed.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon" role="img" aria-label="Calendar icon">📅</div>
+                    <h3>Travel Calendar</h3>
+                    <p>Beautiful visual calendar showing your travel history with detailed statistics.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon" role="img" aria-label="Target icon">🎯</div>
+                    <h3>Privacy Levels</h3>
+                    <p>Choose from Country, City, Precise, or Maximum tracking precision.</p>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon" role="img" aria-label="Cloud icon">☁️</div>
+                    <h3>Optional Sync</h3>
+                    <p>Choose to sync via iCloud. Private, encrypted, always under your control.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/logo.png" alt="Atlas Logged">
+                    <p>Privacy-first location tracking</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#features">Features</a>
+                    <a href="changelog.html">What's New</a>
+                    <a href="roadmap.html">Roadmap</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="location-faq.html">Location FAQ</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Atlas Logged. All rights reserved.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.875rem; color: #64748b;">
+                    Glass effects powered by <a href="https://github.com/dashersw/liquid-glass-js" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: none;">liquid-glass-js</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Liquid Glass Settings Panel -->
+    <div class="glass-settings-panel" id="glass-settings-panel">
+        <div class="settings-header">
+            <h3>Liquid Glass Controls</h3>
+            <button id="close-settings" class="close-button" aria-label="Close settings">×</button>
+        </div>
+        <div class="settings-content">
+            <!-- Enable/Disable Toggle -->
+            <div class="setting-group toggle-group">
+                <label for="enableLiquidGlass" class="toggle-label">
+                    <span>Enable Liquid Glass</span>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="enableLiquidGlass" checked>
+                        <span class="toggle-slider"></span>
+                    </div>
+                </label>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 1.5rem 0;">
+
+            <!-- Slider Controls -->
+            <div class="setting-group">
+                <label for="edgeIntensity">
+                    <span>Edge Intensity</span>
+                    <span class="setting-value">0.010</span>
+                </label>
+                <input type="range" id="edgeIntensity" min="0" max="0.1" step="0.001" value="0.01" aria-label="Edge Intensity">
+            </div>
+            <div class="setting-group">
+                <label for="rimIntensity">
+                    <span>Rim Intensity</span>
+                    <span class="setting-value">0.050</span>
+                </label>
+                <input type="range" id="rimIntensity" min="0" max="0.2" step="0.001" value="0.05" aria-label="Rim Intensity">
+            </div>
+            <div class="setting-group">
+                <label for="baseIntensity">
+                    <span>Base Intensity</span>
+                    <span class="setting-value">0.010</span>
+                </label>
+                <input type="range" id="baseIntensity" min="0" max="0.1" step="0.001" value="0.01" aria-label="Base Intensity">
+            </div>
+            <div class="setting-group">
+                <label for="edgeDistance">
+                    <span>Edge Distance</span>
+                    <span class="setting-value">0.150</span>
+                </label>
+                <input type="range" id="edgeDistance" min="0" max="0.5" step="0.01" value="0.15" aria-label="Edge Distance">
+            </div>
+            <div class="setting-group">
+                <label for="rimDistance">
+                    <span>Rim Distance</span>
+                    <span class="setting-value">0.800</span>
+                </label>
+                <input type="range" id="rimDistance" min="0" max="1" step="0.01" value="0.8" aria-label="Rim Distance">
+            </div>
+            <div class="setting-group">
+                <label for="baseDistance">
+                    <span>Base Distance</span>
+                    <span class="setting-value">0.100</span>
+                </label>
+                <input type="range" id="baseDistance" min="0" max="0.5" step="0.01" value="0.1" aria-label="Base Distance">
+            </div>
+            <div class="setting-group">
+                <label for="cornerBoost">
+                    <span>Corner Boost</span>
+                    <span class="setting-value">0.020</span>
+                </label>
+                <input type="range" id="cornerBoost" min="0" max="0.1" step="0.001" value="0.02" aria-label="Corner Boost">
+            </div>
+            <div class="setting-group">
+                <label for="rippleEffect">
+                    <span>Ripple Effect</span>
+                    <span class="setting-value">0.100</span>
+                </label>
+                <input type="range" id="rippleEffect" min="0" max="0.5" step="0.01" value="0.1" aria-label="Ripple Effect">
+            </div>
+            <div class="setting-group">
+                <label for="blurRadius">
+                    <span>Blur Radius</span>
+                    <span class="setting-value">5.000</span>
+                </label>
+                <input type="range" id="blurRadius" min="0" max="20" step="0.1" value="5.0" aria-label="Blur Radius">
+            </div>
+            <div class="setting-group">
+                <label for="tintOpacity">
+                    <span>Tint Opacity</span>
+                    <span class="setting-value">0.200</span>
+                </label>
+                <input type="range" id="tintOpacity" min="0" max="1" step="0.01" value="0.2" aria-label="Tint Opacity">
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="settings-actions">
+                <button id="randomize-button" class="action-button">Randomize</button>
+                <button id="reset-button" class="action-button">Reset to Defaults</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Cog Button Fallback (always hidden, glass version used instead) -->
+    <button id="settings-cog" class="settings-cog" style="display: none;" aria-label="Open liquid glass settings">
+        💧
+    </button>
+
+    <!-- Feature Flags (must load before cookie-consent) -->
+    <script src="js/feature-flags.js"></script>
+
+    <!-- Cookie Consent & Chatwoot Widget -->
+    <!-- Chatwoot loads conditionally based on consent (GDPR-compliant) -->
+    <script src="js/cookie-consent.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="js/main.js"></script>
+
+    <!-- Liquid Glass Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+            integrity="sha512-tdGfZm98xmSMH/MicDIEDr5Oq6K0B3hLuGvhwM7sg/TxJhx3sW1t7NKfYyNYhvNLR6f1b5fZiwzQdCB0+lMGOA=="
+            crossorigin="anonymous"
+            defer></script>
+    <script src="js/liquid-glass-container.js"></script>
+    <script src="js/liquid-glass-button.js"></script>
+    <script src="js/liquid-glass-controls.js"></script>
+</body>
+</html>
