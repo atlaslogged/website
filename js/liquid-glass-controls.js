@@ -201,10 +201,14 @@ function initGlassSettingsButton() {
         settingsCog.style.display = 'none';
 
         // Create a glass button with water droplet emoji
-        // Size 22.4 = 56px circle (22.4 * 2.5 = 56px) to match Chatwoot widget
+        // Mobile: 48px (size 19.2), Desktop: 56px (size 22.4)
+        // Formula: size × 2.5 = pixel dimensions
+        const isMobile = window.innerWidth <= 768;
+        const buttonSize = isMobile ? 19.2 : 22.4; // 48px mobile, 56px desktop
+
         glassSettingsButton = new Button({
             text: '💧',
-            size: 22.4,
+            size: buttonSize,
             type: 'circle',
             tintOpacity: window.glassControls.tintOpacity,
             onClick: () => {
@@ -215,7 +219,6 @@ function initGlassSettingsButton() {
         });
 
         // Style the glass button to match original position
-        const isMobile = window.innerWidth <= 768;
         glassSettingsButton.element.style.position = 'fixed';
         glassSettingsButton.element.style.bottom = isMobile ? '1rem' : '2rem';
         glassSettingsButton.element.style.left = isMobile ? '1rem' : '2rem';
@@ -241,17 +244,32 @@ function initGlassSettingsButton() {
         // Add to page
         document.body.appendChild(glassSettingsButton.element);
 
-        // Update on resize
+        // Update on resize - recreate button if crossing mobile/desktop threshold
         let resizeTimeout;
+        let wasMobile = isMobile;
+
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                if (window.innerWidth <= 768 && glassSettingsButton) {
-                    glassSettingsButton.element.style.bottom = '1rem';
-                    glassSettingsButton.element.style.left = '1rem';
-                } else if (glassSettingsButton) {
-                    glassSettingsButton.element.style.bottom = '2rem';
-                    glassSettingsButton.element.style.left = '2rem';
+                if (!glassSettingsButton) return;
+
+                const nowMobile = window.innerWidth <= 768;
+
+                // If we crossed the mobile/desktop threshold, recreate the button with new size
+                if (nowMobile !== wasMobile) {
+                    console.log(`Recreating glass button for ${nowMobile ? 'mobile' : 'desktop'} size`);
+                    disableGlassSettingsButton();
+                    initGlassSettingsButton();
+                    wasMobile = nowMobile;
+                } else {
+                    // Just update position if staying in same mode
+                    if (nowMobile) {
+                        glassSettingsButton.element.style.bottom = '1rem';
+                        glassSettingsButton.element.style.left = '1rem';
+                    } else {
+                        glassSettingsButton.element.style.bottom = '2rem';
+                        glassSettingsButton.element.style.left = '2rem';
+                    }
                 }
             }, 100);
         });
