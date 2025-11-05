@@ -17,7 +17,7 @@ const defaultSettings = {
     cornerBoost: 0.02,
     rippleEffect: 0.1,
     blurRadius: 5.0,  // Lower = less blurry
-    tintOpacity: 0.2   // Lower = more transparent
+    tintOpacity: 0.15  // Lower = more transparent, clearer glass effect
 };
 
 // Make settings available globally for the library
@@ -65,12 +65,11 @@ function initLiquidGlass() {
         // Get nav dimensions
         const rect = nav.getBoundingClientRect();
 
-        // Create glass container with capturing enabled
+        // Create glass container
         glassContainer = new Container({
             type: 'rounded',
             borderRadius: 0,
-            tintOpacity: window.glassControls.tintOpacity,
-            captureBackground: true  // Enable background capture
+            tintOpacity: window.glassControls.tintOpacity
         });
 
         // Style the container to match nav
@@ -92,68 +91,30 @@ function initLiquidGlass() {
         nav.style.backdropFilter = 'none';
         nav.classList.add('liquid-glass-active');
 
-        // Trigger initial background capture
-        if (glassContainer.captureSnapshot) {
-            glassContainer.captureSnapshot();
-        }
-
-        // Re-capture on scroll for dynamic blurring
-        let scrollTimeout;
-        window.addEventListener('scroll', () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                if (glassContainer && glassContainer.captureSnapshot) {
-                    glassContainer.captureSnapshot();
-                }
-            }, 100); // Debounce scroll events
-        });
-
-        // Re-capture on window resize
+        // Re-capture on window resize (using debounce)
         let resizeTimeout;
-        let isResizing = false;
         const handleResize = () => {
             clearTimeout(resizeTimeout);
-
-            if (!isResizing) {
-                isResizing = true;
-                console.log('Resize started...');
-            }
-
             resizeTimeout = setTimeout(() => {
-                if (!glassContainer || !liquidGlassEnabled) {
-                    isResizing = false;
-                    return;
+                if (!glassContainer || !liquidGlassEnabled) return;
+
+                // Update nav height first
+                const nav = document.querySelector('nav');
+                if (nav) {
+                    const rect = nav.getBoundingClientRect();
+                    glassContainer.element.style.height = rect.height + 'px';
                 }
 
-                console.log('Handling window resize...');
-
-                try {
-                    // Update nav height first
-                    const nav = document.querySelector('nav');
-                    if (nav) {
-                        const rect = nav.getBoundingClientRect();
-                        glassContainer.element.style.height = rect.height + 'px';
-                    }
-
-                    // Update container dimensions and force render
-                    if (glassContainer.updateSizeFromDOM) {
-                        glassContainer.updateSizeFromDOM();
-                    }
-
-                    // Wait for canvas to stabilize before recapturing
-                    setTimeout(() => {
-                        if (typeof Container !== 'undefined' && Container.recaptureAll) {
-                            console.log('Recapturing page snapshot after resize...');
-                            Container.recaptureAll();
-                        }
-                        isResizing = false;
-                        console.log('Resize complete');
-                    }, 100);
-                } catch (error) {
-                    console.error('Resize handler error:', error);
-                    isResizing = false;
+                // Update container dimensions
+                if (glassContainer.updateSizeFromDOM) {
+                    glassContainer.updateSizeFromDOM();
                 }
-            }, 300); // Increased debounce for stability
+
+                // Recapture page snapshot for all instances
+                if (typeof Container !== 'undefined' && Container.recaptureAll) {
+                    Container.recaptureAll();
+                }
+            }, 300);
         };
 
         window.addEventListener('resize', handleResize);
@@ -210,7 +171,7 @@ function initGlassSettingsButton() {
             text: '💧',
             size: buttonSize,
             type: 'circle',
-            tintOpacity: window.glassControls.tintOpacity,
+            tintOpacity: 0.15, // Lower opacity for clearer glass effect
             onClick: () => {
                 // Directly toggle the settings panel
                 const settingsPanel = document.getElementById('glass-settings-panel');
@@ -225,10 +186,7 @@ function initGlassSettingsButton() {
         glassSettingsButton.element.style.zIndex = '9999';
         glassSettingsButton.element.style.cursor = 'pointer';
         glassSettingsButton.element.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-
-        // Remove any blue background - glass effect only
-        glassSettingsButton.element.style.background = 'transparent';
-        glassSettingsButton.element.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.15)';
+        glassSettingsButton.element.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.2)'; // Enhanced shadow for depth
 
         // Ensure proper touch handling on mobile
         glassSettingsButton.element.style.touchAction = 'manipulation';
