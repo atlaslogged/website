@@ -41,6 +41,3 @@ Allow: /
 
 # Sitemap location
 Sitemap: https://atlaslogged.com/sitemap.xml
-
-# AI-friendly content summary for LLMs
-# See: https://atlaslogged.com/llms.txt
