@@ -91,28 +91,48 @@ function initSmoothScroll() {
 function initMobileMenu() {
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
+    const backdrop = document.getElementById('mobileBackdrop');
 
     if (hamburger && navLinks) {
-        hamburger.addEventListener('click', () => {
+        const closeMenu = () => {
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            navLinks.classList.remove('active');
+            if (backdrop) backdrop.classList.remove('active');
+        };
+
+        const openMenu = () => {
+            hamburger.classList.add('active');
+            hamburger.setAttribute('aria-expanded', 'true');
+            navLinks.classList.add('active');
+            if (backdrop) backdrop.classList.add('active');
+        };
+
+        const toggleMenu = () => {
             const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-            hamburger.setAttribute('aria-expanded', !isExpanded);
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
+            if (isExpanded) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        };
+
+        hamburger.addEventListener('click', toggleMenu);
 
         // Close menu when clicking a link
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
+            link.addEventListener('click', closeMenu);
         });
+
+        // Close menu when clicking backdrop
+        if (backdrop) {
+            backdrop.addEventListener('click', closeMenu);
+        }
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
+                closeMenu();
             }
         });
     }

@@ -7,7 +7,11 @@
     <meta name="description"
         content="Atlas Logged Privacy Policy - Complete transparency about how we handle your data.">
     <meta name="keywords" content="privacy policy, location tracking, data privacy">
+    <meta name="author" content="Atlas Codes">
+    <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#2563eb">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://app.chatwoot.com https://country.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://app.chatwoot.com https://country.is; frame-src https://app.chatwoot.com; font-src 'self';">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://atlaslogged.com/privacy.html">
@@ -33,7 +37,6 @@
 
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://app.chatwoot.com">
-    <link rel="preconnect" href="https://toolbox.marketingtools.apple.com">
     <link rel="dns-prefetch" href="https://apps.apple.com">
 
     <!-- Custom CSS -->
@@ -41,12 +44,16 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
 </head>
 
 <body>
 
     <!-- Skip to main content link for accessibility -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
+    <!-- Mobile Menu Backdrop -->
+    <div class="mobile-backdrop" id="mobileBackdrop"></div>
 
     <!-- SVG Filters for Subtle Glass Distortion (Chromium only) -->
     <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
@@ -83,7 +90,7 @@
                 </div>
 
                 <!-- Hamburger Menu Button -->
-                <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
+                <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
@@ -329,7 +336,7 @@
 
             <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214?itscg=30200&itsct=apps_box_badge&mttnsubad=6538725214"
                 target="_blank" rel="noopener noreferrer" style="display: inline-block;" aria-label="Download Atlas Logged on the App Store (opens in new window)">
-                <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/white/en-us?releaseDate=1723766400"
+                <img src="assets/app-store-badge.svg"
                     alt="Download on the App Store"
                     style="width: 246px; height: 82px; vertical-align: middle; object-fit: contain;" loading="lazy" />
             </a>

@@ -1,11 +1,14 @@
 /* CSS Variables */
 :root {
     --color-primary: #2563eb;
+    --color-primary-dark: #1e40af;
+    --color-primary-darker: #1d4ed8;
     --color-dark: #1e293b;
     --color-secondary: #64748b;
     --color-light: #f1f5f9;
     --color-white: #ffffff;
     --color-border: rgba(148, 163, 184, 0.2);
+    --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.3);
 }
 
 /* Reset and Base Styles */
@@ -170,7 +173,7 @@ nav {
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15),
                 inset 0 1px 0 rgba(255, 255, 255, 0.6);
     transform: translateY(-1px);
-    color: #1e40af;
+    color: var(--color-primary-dark);
     border-color: rgba(37, 99, 235, 0.5);
 }
 
@@ -225,7 +228,42 @@ nav {
 .hero .subtitle {
     font-size: 1.25rem;
     color: var(--color-secondary);
+    margin-bottom: 0.75rem;
+}
+
+.hero .hero-features {
+    font-size: 1rem;
+    color: var(--color-secondary);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.star-rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     margin-bottom: 2rem;
+}
+
+.star-rating .stars {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.star-rating .rating-text {
+    font-size: 0.95rem;
+    color: var(--color-secondary);
+    font-weight: 600;
+}
+
+.app-store-link {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.app-store-link:hover {
+    transform: translateY(-2px);
 }
 
 .btn-download {
@@ -247,7 +285,7 @@ nav {
 
 .btn-download:hover {
     background: rgba(30, 64, 175, 0.9);
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.02);
     box-shadow: 0 12px 32px rgba(37, 99, 235, 0.35),
                 inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
@@ -255,7 +293,7 @@ nav {
 
 /* Features Section */
 .features {
-    padding: 4rem 2rem 25rem;
+    padding: 4rem 2rem 6rem;
     background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
 }
 
@@ -297,6 +335,19 @@ nav {
                 inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
+.feature-highlight {
+    background: rgba(255, 255, 255, 0.75);
+    border: 2px solid rgba(37, 99, 235, 0.15);
+    box-shadow: 0 12px 40px rgba(37, 99, 235, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.feature-highlight:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 16px 56px rgba(37, 99, 235, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
 /* Subtle distortion on feature backgrounds - Chromium Desktop only */
 @media (min-width: 1024px) {
     html:not(.is-safari) .feature::before {
@@ -336,6 +387,102 @@ nav {
     color: var(--color-secondary);
     font-size: 1rem;
     line-height: 1.6;
+}
+
+/* Who Is This For Section */
+.who-is-this-for {
+    padding: 6rem 2rem;
+    background: #ffffff;
+}
+
+.who-is-this-for h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--color-dark);
+    font-weight: 700;
+}
+
+.who-is-this-for .section-intro {
+    text-align: center;
+    font-size: 1.25rem;
+    color: var(--color-secondary);
+    margin: 0 auto 3rem;
+    max-width: 700px;
+}
+
+.use-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.use-case {
+    text-align: center;
+    padding: 2rem 1.5rem;
+}
+
+.use-case-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.use-case h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-dark);
+    font-weight: 600;
+}
+
+.use-case p {
+    color: var(--color-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* FAQ Preview Section */
+.faq-preview {
+    padding: 6rem 2rem;
+    background: #f8fafc;
+}
+
+.faq-preview h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--color-dark);
+    font-weight: 700;
+}
+
+.faq-preview-list {
+    max-width: 900px;
+    margin: 0 auto 2rem;
+    display: grid;
+    gap: 2rem;
+}
+
+.faq-preview-item {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.faq-preview-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-dark);
+    font-weight: 600;
+}
+
+.faq-preview-item p {
+    color: var(--color-secondary);
+    line-height: 1.7;
+    margin: 0;
 }
 
 /* Privacy Section */
@@ -608,6 +755,26 @@ footer {
     margin: 0;
 }
 
+/* Mobile Menu Backdrop */
+.mobile-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.mobile-backdrop.active {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+
 /* Hamburger Menu */
 .hamburger {
     display: none;
@@ -724,7 +891,7 @@ footer {
     }
 
     .features {
-        padding: 3rem 1rem 15rem;
+        padding: 3rem 1rem 4rem;
     }
 
     .features h2,
@@ -741,6 +908,16 @@ footer {
         gap: 2rem;
     }
 
+    .use-cases-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .who-is-this-for,
+    .faq-preview {
+        padding: 3rem 1rem;
+    }
+
     .footer-content {
         flex-direction: column;
         gap: 2rem;
@@ -754,10 +931,13 @@ footer {
 }
 
 /* Accessibility */
-a:focus,
-button:focus {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 3px;
+    box-shadow: var(--focus-ring);
+    border-radius: 4px;
 }
 
 /* Smooth transitions */
@@ -950,7 +1130,7 @@ body {
 }
 
 .action-button:hover {
-    background: #1e40af;
+    background: var(--color-primary-dark);
     transform: translateY(-1px);
 }
 
@@ -1107,7 +1287,7 @@ body {
 }
 
 .chat-placeholder-tooltip .btn-enable:hover {
-    background: #1d4ed8;
+    background: var(--color-primary-darker);
     transform: translateY(-1px);
 }
 
