@@ -6,7 +6,7 @@ let glassSettingsButton = null;
 let liquidGlassEnabled = true;
 let originalNav = null;
 
-// Default settings (matching library demo)
+// Default settings (matching liquid-glass-js library)
 const defaultSettings = {
     edgeIntensity: 0.01,
     rimIntensity: 0.05,
@@ -16,8 +16,8 @@ const defaultSettings = {
     baseDistance: 0.1,
     cornerBoost: 0.02,
     rippleEffect: 0.1,
-    blurRadius: 5.0,  // Lower = less blurry
-    tintOpacity: 0.15  // Lower = more transparent, clearer glass effect
+    blurRadius: 5.0,
+    tintOpacity: 0.2  // Library default
 };
 
 // Make settings available globally for the library
@@ -171,7 +171,7 @@ function initGlassSettingsButton() {
             text: '💧',
             size: buttonSize,
             type: 'circle',
-            tintOpacity: 0.15, // Lower opacity for clearer glass effect
+            tintOpacity: 0.2, // Library default
             onClick: () => {
                 // Directly toggle the settings panel
                 const settingsPanel = document.getElementById('glass-settings-panel');
@@ -360,7 +360,7 @@ function randomizeSettings() {
         baseDistance: Math.random() * 0.5,
         cornerBoost: Math.random() * 0.1,
         rippleEffect: Math.random() * 0.5,
-        blurRadius: Math.random() * 20,
+        blurRadius: Math.random() * 15,  // Library-recommended max
         tintOpacity: Math.random()
     };
 
