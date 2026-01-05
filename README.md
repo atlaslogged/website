@@ -1,5 +1,7 @@
 # Atlas Logged Landing Page
 
+> Last updated: January 2026
+
 Modern, animated landing page for atlaslogged.com built with vanilla HTML, CSS, and JavaScript.
 
 ## Features
