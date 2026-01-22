@@ -1,0 +1,51 @@
+name: Sync Intel Data
+
+on:
+  # Triggered by intel repo after successful deploy
+  repository_dispatch:
+    types: [intel-data-updated]
+  # Manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v4
+
+      - name: Download latest intel data
+        run: |
+          echo "Downloading latest data from intel.atlaslogged.com..."
+
+          # Download each file from intel's gh-pages
+          curl -sL "https://raw.githubusercontent.com/atlas-intel/atlas-intel/gh-pages/resources/countries_v2.json" -o atlas/resources/countries_v2.json
+          curl -sL "https://raw.githubusercontent.com/atlas-intel/atlas-intel/gh-pages/resources/airports_iata.json" -o atlas/resources/airports_iata.json
+          curl -sL "https://raw.githubusercontent.com/atlas-intel/atlas-intel/gh-pages/resources/countries_50m.geojson" -o atlas/resources/countries_50m.geojson
+          curl -sL "https://raw.githubusercontent.com/atlas-intel/atlas-intel/gh-pages/resources/regional_flags.json" -o atlas/resources/regional_flags.json
+
+          echo "✓ Data synced from intel"
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet atlas/resources/; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No changes detected"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Changes detected in data files"
+          fi
+
+      - name: Commit and push
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add atlas/resources/
+          git commit -m "chore: sync intel data"
+          git push
