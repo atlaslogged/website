@@ -1,9 +1,9 @@
 name: Sync Intel Data
 
 on:
-  # Triggered by intel repo after successful deploy
-  repository_dispatch:
-    types: [intel-data-updated]
+  # Run monthly on the 2nd (day after intel updates on the 1st)
+  schedule:
+    - cron: '0 6 2 * *'
   # Manual trigger
   workflow_dispatch:
 
