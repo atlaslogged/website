@@ -1,4 +1,4 @@
-name: Test and Deploy
+name: Pre-deploy Checks
 
 on:
   push:
@@ -12,21 +12,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  check-and-deploy:
-    name: Check and Deploy
+  check:
+    name: Validate Site
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-
-    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
-    permissions:
-      pages: write
-      id-token: write
-      contents: read
-
-    # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout code
@@ -67,15 +55,3 @@ jobs:
             echo "Warning: Found potential typos in JavaScript files"
           fi
           echo "✓ No obvious JS syntax errors"
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
