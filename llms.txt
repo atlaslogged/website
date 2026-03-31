@@ -49,16 +49,26 @@ Atlas Logged is ideal for travelers, digital nomads, frequent business travelers
 
 
 
+
 # Version History
 
-## Version 1.1.31 - 2026-03-08
-Update flow heading wording refinement
+## Version 1.2.0 - 2026-03-30
+Our Biggest Update Yet
+
+### New Features
+- **Multi-Device Support**: Use Atlas Logged across all your devices with seamless sync
+- **iCloud Backup**: Your travel history is now safely backed up to iCloud
+- **Photo History**: See your photos alongside your country stays and travel timeline
+- **Feedback & Support**: New feedback screen to easily get in touch with us
 
 ### Improvements
-- **Welcome Heading Copy**: Updated the first update screen title to read 'What's new in this version' for clearer wording.
+- **Onboarding Experience**: Completely redesigned setup flow to get you started faster
+- **Calendar Reliability**: Stable month navigation and background refresh without snapping back
+- **Performance**: Faster app launch and smoother navigation throughout
 
 ### Bug Fixes
-- **Update Flow Copy Consistency**: Aligned update heading text so static titles read naturally with version shown separately.
+- **Calendar & Logging**: Fixed date selection, range validation, and manual log consistency
+- **Stability**: Numerous bug fixes and reliability improvements
 
 ---
 
