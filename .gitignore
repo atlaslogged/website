@@ -9,6 +9,7 @@ node_modules/
 test-results/
 test/e2e-results/
 test/coverage/
+draft-review/
 
 # Test Logs
 test*.log
