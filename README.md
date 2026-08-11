@@ -6,11 +6,34 @@ Static marketing, policy, support, changelog, and roadmap pages for [atlaslogged
 
 - Vanilla HTML, CSS, and JavaScript; no build step.
 - Shared paper-and-ink travel-journal design in `css/style.css`.
+- Palette and theming in `css/theme.css` + `js/theme.js` — the Atlas theme
+  contract, shared byte-identical with `atlascodes.ai` and `ovm.sh`.
+- Self-hosted Roboto and JetBrains Mono in `css/fonts.css` + `assets/fonts/`.
 - Changelog-specific generated-content styles in `css/changelog.css`.
 - Shared progressive enhancement in `js/main.js`.
 - Consent-gated Chatwoot support in `js/cookie-consent.js`.
 - Live Google Apps Script roadmap integration in `js/roadmap-api.js`.
 - Checked-in App Store badge and authentic app screenshots under `assets/`.
+
+### Theming
+
+The site ships three themes — white (default), black, and paper — switched by
+the swatch control at the right of the brand bar and remembered in
+`localStorage` under `atlas-theme`. `js/theme.js` runs before the stylesheets so
+a returning visitor's theme is applied before first paint, and it keeps
+`<meta name="theme-color">` in step.
+
+`css/theme.css` and `js/theme.js` are copied verbatim from the Atlas Codes site
+and must never be edited here. To confirm all three sites still agree:
+
+```bash
+/path/to/atlas-site/tools/check-theme-contract.sh /path/to/ovm "$PWD"
+```
+
+Everything else composes the contract's semantic tokens (`--canvas`,
+`--surface`, `--text`, `--text-muted`, `--rule`, `--action`, …). Colour literals
+are not allowed in `css/style.css` or `css/changelog.css`; `npm run test:theme`
+enforces that.
 
 The `/atlas/` directory is a separate globe/data-viewer application and is not part of the marketing-site shell.
 
@@ -45,7 +68,8 @@ python3 -m http.server 8000
 npm test
 ```
 
-The default test command runs `test/e2e/site-smoke.spec.js` in Chromium. It mocks the roadmap API, sets support consent to rejected, and does not vote, submit, delete, deploy, or contact Chatwoot.
+The default test command runs `test/e2e/site-smoke.spec.js` and
+`test/e2e/theme-contract.spec.js` in Chromium. It mocks the roadmap API, sets support consent to rejected, and does not vote, submit, delete, deploy, or contact Chatwoot.
 
 ### Live-service tests
 

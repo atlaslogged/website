@@ -35,21 +35,55 @@ The following commands can mutate live external state or publish code and must n
 
 ## Architecture
 
-- `css/style.css` — shared semantic tokens, page shell, components, responsive rules, support consent UI
+- `css/theme.css` — **shared theme contract; do not edit here** (see below)
+- `css/fonts.css` — self-hosted Roboto and JetBrains Mono `@font-face` rules
+- `css/style.css` — page shell, components, responsive rules, support consent UI
 - `css/changelog.css` — generated release-ledger presentation
+- `js/theme.js` — **shared theme contract; do not edit here** (see below)
 - `js/main.js` — reduced-motion-aware anchors and accessible mobile navigation
 - `js/cookie-consent.js` — sole consent-gated Chatwoot loader
 - `js/roadmap-api.js` — safe DOM rendering, voting, submission, and dialog behavior
 - `test/e2e/site-smoke.spec.js` — deterministic safe local smoke suite
+- `test/e2e/theme-contract.spec.js` — asserts every page wires up the contract
 
 Root HTML pages intentionally duplicate the small static shell. Keep these elements consistent:
 
 - skip link and `main#main-content`
+- `header.atlas-bar` carrying `.sig`, `.suffix`, `.nav-burger`, `nav#navLinks`, and `[data-theme-cycle]`
 - `#mobileBackdrop`, `#hamburger`, and `#navLinks`
 - one accurate `aria-current="page"` where the route appears in navigation
+- `js/theme.js` in `<head>`, before the stylesheets
+- `css/fonts.css`, `css/theme.css`, then `css/style.css`
 - local `assets/app-store-badge.svg`
 - `js/cookie-consent.js` before `js/main.js`
-- 2026 footer and App Store ID `6538725214`
+- 2026 footer, the Atlas Codes credit, and App Store ID `6538725214`
+
+## The Atlas theme contract
+
+`css/theme.css` and `js/theme.js` are `atlas-theme-contract:v1`, shared
+**byte-identical** with `atlascodes.ai` and `ovm.sh`. They carry the whole
+palette across three themes (white, black, paper), the `data-theme` switch, its
+`localStorage` persistence, and the `.theme-cycle` control.
+
+- Never edit either file in this repository. A change belongs in
+  `atlas-site/apps/next/{src/app/theme.css,public/theme.js}` and is then copied
+  verbatim to every consumer.
+- Verify with the checker in the Atlas repo, which `cmp`s all three sites:
+  `atlas-site/tools/check-theme-contract.sh /path/to/ovm /path/to/this/website`
+- `css/style.css` and `css/changelog.css` must contain **no colour literals**.
+  Compose the contract's semantic tokens instead — `--canvas`, `--surface`,
+  `--surface-raised`, `--text`, `--text-muted`, `--text-faint`, `--rule`,
+  `--action`. A hex here is a value that will not survive a theme switch, and
+  `npm run test:theme` fails the build on one.
+- Filled accent controls take `color: var(--canvas)`, never white: the black
+  theme's accent is light enough that white text on it fails contrast.
+- `<meta name="theme-color">` is managed by `theme.js`. The literal in markup is
+  only the pre-script default and must stay `#ffffff`.
+
+Fonts are self-hosted under `assets/fonts/` rather than loaded from a font CDN.
+That is deliberate for a privacy-first product, and it is what lets the CSP keep
+`font-src 'self'`. Both families are variable fonts, so one file per subset
+covers every weight.
 
 Prefer semantic native HTML such as `<details>/<summary>`, labelled `<nav>`, and real buttons. Keep 44px touch targets, focus visibility, keyboard operation, and reduced-motion behavior.
 
