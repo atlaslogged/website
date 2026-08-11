@@ -1,903 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description"
-        content="Atlas Logged Roadmap - See what's coming next for our privacy-first location tracking app.">
+    <meta name="description" content="Atlas Logged public roadmap — review, vote on, and suggest privacy-first travel features.">
     <meta name="keywords" content="atlas logged, roadmap, upcoming features, future plans">
-    <meta name="theme-color" content="#2563eb">
-
-    <title>Roadmap - Atlas Logged</title>
-
-    <!-- Apple Smart App Banner -->
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#f6f2e9">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://app.chatwoot.com; style-src 'self'; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://app.chatwoot.com https://api.country.is; frame-src https://app.chatwoot.com; font-src 'self';">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link rel="canonical" href="https://atlaslogged.com/roadmap.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://atlaslogged.com/roadmap.html">
+    <meta property="og:site_name" content="Atlas Logged">
+    <meta property="og:title" content="Roadmap — Atlas Logged">
+    <meta property="og:description" content="Review and vote on what Atlas Logged builds next.">
+    <meta property="og:image" content="https://atlaslogged.com/assets/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Roadmap — Atlas Logged">
+    <meta name="twitter:description" content="Review and vote on what Atlas Logged builds next.">
+    <meta name="twitter:image" content="https://atlaslogged.com/assets/logo.png">
     <meta name="apple-itunes-app" content="app-id=6538725214">
-
-    <!-- Custom CSS -->
+    <title>Roadmap — Atlas Logged</title>
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/favicon.png">
-
-    <style>
-        /* Kanban Container - Horizontal Scroll */
-        .roadmap-kanban {
-            display: flex;
-            overflow-x: auto;
-            overflow-y: hidden;
-            gap: 1.5rem;
-            padding: 2rem 1rem;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        /* Custom scrollbar for desktop */
-        .roadmap-kanban::-webkit-scrollbar {
-            height: 10px;
-        }
-
-        .roadmap-kanban::-webkit-scrollbar-track {
-            background: #f1f5f9;
-            border-radius: 5px;
-        }
-
-        .roadmap-kanban::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 5px;
-        }
-
-        .roadmap-kanban::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
-        }
-
-        /* Kanban Column */
-        .roadmap-column {
-            min-width: 340px;
-            max-width: 340px;
-            flex-shrink: 0;
-            background: rgba(248, 250, 252, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            border: 1px solid #e2e8f0;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Column Header */
-        .roadmap-column-header {
-            margin-bottom: 1.5rem;
-        }
-
-        .roadmap-column h3 {
-            margin: 0 0 0.5rem 0;
-            font-size: 1.125rem;
-            color: #1e293b;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .roadmap-column .column-count {
-            font-size: 0.875rem;
-            color: #64748b;
-            font-weight: normal;
-        }
-
-        /* Feature Cards Container */
-        .feature-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        /* Feature Card */
-        .feature-card {
-            background: white;
-            border-radius: 0.75rem;
-            padding: 1.25rem;
-            border: 1px solid #e2e8f0;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature-card h4 {
-            margin: 0 0 0.5rem 0;
-            color: #1e293b;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .submission-badge {
-            display: inline-block;
-            padding: 0.2rem 0.5rem;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 600;
-            border-radius: 0.375rem;
-            text-transform: uppercase;
-            letter-spacing: 0.025em;
-        }
-
-        .feature-card p {
-            margin: 0 0 1rem 0;
-            color: #64748b;
-            font-size: 0.875rem;
-            line-height: 1.5;
-        }
-
-        /* Vote Section */
-        .vote-section {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid #f1f5f9;
-        }
-
-        .vote-button {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.625rem 1rem;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.5rem;
-            color: #2563eb;
-            font-size: 0.875rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            min-height: 44px; /* iOS touch target minimum */
-        }
-
-        .vote-button:hover {
-            background: #eff6ff;
-            border-color: #2563eb;
-        }
-
-        .vote-button.voted {
-            background: #2563eb;
-            color: white;
-            border-color: #2563eb;
-        }
-
-        .vote-button.frozen {
-            opacity: 0.5;
-            cursor: not-allowed;
-            background: #f1f5f9;
-            color: #64748b;
-        }
-
-        .vote-button.loading {
-            opacity: 0.7;
-            cursor: wait;
-        }
-
-        .vote-count {
-            font-size: 0.875rem;
-            color: #64748b;
-        }
-
-        /* Loading spinner animation */
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Vote error message - subtle inline feedback */
-        .vote-error-message {
-            margin-top: 0.5rem;
-            padding: 0.5rem 0.75rem;
-            background: #fef2f2;
-            border-left: 3px solid #ef4444;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
-            color: #991b1b;
-            line-height: 1.4;
-            transition: opacity 0.3s ease;
-        }
-
-        /* Section Headers */
-        .roadmap-section {
-            margin: 3rem 0;
-        }
-
-        .roadmap-section-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .roadmap-section-header h2 {
-            font-size: 2rem;
-            margin: 0 0 0.5rem 0;
-            color: #1e293b;
-        }
-
-        .roadmap-section-header p {
-            color: #64748b;
-            font-size: 1.125rem;
-        }
-
-        /* Status badges */
-        .status-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .status-badge.community {
-            background: #f3e8ff;
-            color: #6b21a8;
-        }
-
-        .status-badge.priority {
-            background: #fed7aa;
-            color: #c2410c;
-        }
-
-        .status-badge.planned {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-
-        .status-badge.building {
-            background: #fef3c7;
-            color: #92400e;
-        }
-
-        .status-badge.exploring {
-            background: #f3e8ff;
-            color: #6b21a8;
-        }
-
-        /* Mobile: Show peek of next column */
-        @media (max-width: 768px) {
-            .roadmap-kanban {
-                gap: 1rem;
-                padding: 1rem 0.5rem;
-                /* Add snap scrolling for better mobile UX */
-                scroll-snap-type: x mandatory;
-            }
-
-            .roadmap-column {
-                min-width: 85vw;
-                max-width: 85vw;
-                scroll-snap-align: start;
-            }
-        }
-
-        /* Delivered Section - Timeline Style */
-        .delivered-section {
-            background: linear-gradient(to bottom, #f8fafc 0%, white 100%);
-            padding: 4rem 0;
-            margin-top: 4rem;
-        }
-
-        .delivered-timeline {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .release-group {
-            margin-bottom: 3rem;
-            border-left: 3px solid #2563eb;
-            padding-left: 2rem;
-            position: relative;
-        }
-
-        .release-group::before {
-            content: '';
-            position: absolute;
-            left: -9px;
-            top: 0;
-            width: 15px;
-            height: 15px;
-            background: #2563eb;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 0 0 3px #e0e7ff;
-        }
-
-        .release-header {
-            margin-bottom: 1.5rem;
-        }
-
-        .release-version {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1e293b;
-            margin: 0 0 0.25rem 0;
-        }
-
-        .release-date {
-            color: #64748b;
-            font-size: 0.875rem;
-        }
-
-        .release-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .delivered-card {
-            background: white;
-            border-radius: 0.75rem;
-            padding: 1.25rem;
-            border: 1px solid #e2e8f0;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .delivered-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .delivered-card h4 {
-            margin: 0 0 0.5rem 0;
-            color: #1e293b;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .delivered-card p {
-            margin: 0;
-            color: #64748b;
-            font-size: 0.875rem;
-            line-height: 1.5;
-        }
-
-        .delivered-card .final-votes {
-            margin-top: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid #f1f5f9;
-            font-size: 0.875rem;
-            color: #10b981;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .view-changelog-link {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.75rem 1.5rem;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-
-        .view-changelog-link:hover {
-            background: #1d4ed8;
-        }
-
-        /* Floating Action Button */
-        .fab-container {
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-        }
-
-        .fab-button {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            color: white;
-            border: none;
-            border-radius: 2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
-            transition: all 0.3s;
-        }
-
-        .fab-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 32px rgba(37, 99, 235, 0.5);
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 1rem;
-            padding: 2rem;
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideUp 0.3s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-header h3 {
-            margin: 0;
-            color: #1e293b;
-            font-size: 1.5rem;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: #64748b;
-            cursor: pointer;
-            padding: 0;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 0.5rem;
-            transition: background 0.2s;
-        }
-
-        .close-modal:hover {
-            background: #f1f5f9;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #1e293b;
-            font-weight: 600;
-            font-size: 0.875rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.5rem;
-            font-size: 0.875rem;
-            font-family: inherit;
-            box-sizing: border-box;
-        }
-
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 1rem;
-            background: #2563eb;
-            color: white;
-            border: none;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .submit-button:hover {
-            background: #1d4ed8;
-        }
-
-        .char-count {
-            font-size: 0.75rem;
-            color: #64748b;
-            text-align: right;
-            margin-top: 0.25rem;
-        }
-
-        @media (max-width: 768px) {
-            .fab-button {
-                padding: 0.875rem 1.5rem;
-                font-size: 0.875rem;
-            }
-
-            .fab-container {
-                bottom: 1.5rem;
-            }
-
-            .modal-content {
-                padding: 1.5rem;
-                margin: 1rem;
-            }
-
-            .delivered-timeline {
-                padding: 0 1rem;
-            }
-
-            .release-features {
-                grid-template-columns: 1fr;
-            }
-
-            .roadmap-section-header h2 {
-                font-size: 1.5rem;
-            }
-
-            .roadmap-section-header p {
-                font-size: 1rem;
-            }
-        }
-    </style>
+    <link rel="apple-touch-icon" href="assets/logo.png">
 </head>
-
-<body>
-
-    <!-- Skip to main content link for accessibility -->
+<body class="roadmap-page">
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
-
-    <!-- SVG Filters for Subtle Glass Distortion (Chromium only) -->
-    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
-        <defs>
-            <filter id="glass-distortion" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
-                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.01" numOctaves="1" seed="7" result="noise" />
-                <feGaussianBlur in="noise" stdDeviation="1.5" result="smooth" />
-                <feDisplacementMap in="SourceGraphic" in2="smooth" scale="3" xChannelSelector="R" yChannelSelector="G" />
-            </filter>
-        </defs>
-    </svg>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="nav-content">
-                <div class="nav-brand">
-                    <a href="index.html" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
-                        <img src="assets/logo.png" alt="Atlas Logged" class="nav-logo">
-                        <span class="brand-name">Atlas Logged</span>
-                    </a>
-                </div>
-
-                <!-- Hamburger Menu Button -->
-                <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </button>
-
-                <!-- Navigation Links -->
-                <div class="nav-links" id="navLinks">
-                    <a href="index.html">Home</a>
-                    <a href="index.html#features">Features</a>
-                    <a href="privacy.html">Privacy</a>
-                    <a href="location-faq.html">Location FAQ</a>
-                    <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214?itscg=30200&itsct=apps_box_badge&mttnsubad=6538725214"
-                        target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download Atlas Logged (opens in new window)">Download</a>
-                </div>
-            </div>
+    <div class="mobile-backdrop" id="mobileBackdrop" aria-hidden="true"></div>
+    <nav aria-label="Primary navigation">
+        <div class="container nav-content">
+            <div class="nav-brand"><a href="index.html"><img src="assets/logo.png" alt="" class="nav-logo"><span class="brand-name">Atlas Logged</span></a></div>
+            <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+            <div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="changelog.html">What's new</a><a href="roadmap.html" aria-current="page">Roadmap</a><a href="privacy.html">Privacy</a><a href="location-faq.html">FAQ</a><a href="https://apps.apple.com/us/app/atlas-logged/id6538725214" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download Atlas Logged (opens in new window)">Download</a></div>
         </div>
     </nav>
-
-    <!-- Main Content -->
     <main id="main-content">
-        <!-- Header -->
-        <section class="privacy" style="padding-bottom: 1rem;">
+        <section class="privacy" aria-labelledby="roadmap-title">
             <div class="container">
-                <img src="assets/logo.png" alt="Atlas Logged" class="section-logo">
-                <h1>Product Roadmap</h1>
-                <p class="intro">Vote on features and see what we're building next. Your input shapes the future of Atlas Logged!</p>
+                <img src="assets/logo.png" alt="" class="section-logo">
+                <p class="section-kicker">An open work register</p>
+                <h1 id="roadmap-title">Product Roadmap</h1>
+                <p class="intro">Review the queue, vote on ideas, and see what has shipped. No account is required.</p>
+                <div class="policy-highlight"><p><strong>Trust-based voting:</strong> votes are stored in this browser. They do not sync between devices and disappear if you clear local browser data.</p></div>
+                <p class="roadmap-actions"><button class="button-primary" id="openModal" type="button" aria-haspopup="dialog" aria-controls="featureModal">Suggest a feature</button></p>
             </div>
         </section>
 
-        <!-- Community Voice Section -->
-        <section class="roadmap-section">
+        <section class="roadmap-section" aria-labelledby="community-title">
             <div class="container">
-                <div class="roadmap-section-header">
-                    <h2>🗳️ Community Voice</h2>
-                    <p>Vote to influence what we build next!</p>
-                    <p style="font-size: 0.875rem; color: #64748b; margin-top: 0.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                        <strong>Trust-based voting:</strong> No account needed! Your votes are saved in your browser and will persist across sessions. Note: Votes won't sync between devices or in incognito mode, and will be lost if you clear your cookies.
-                    </p>
-                </div>
-
+                <div class="roadmap-section-header"><p class="section-kicker">Community register</p><h2 id="community-title">Requests under review</h2><p>Early ideas remain open for voting while their scope and fit are assessed.</p></div>
                 <div class="roadmap-kanban">
-                    <!-- Column 1: Community Requests -->
-                    <div class="roadmap-column" data-column="community-requests">
-                        <div class="roadmap-column-header">
-                            <h3>🟣 Community Requests</h3>
-                            <span class="status-badge community">Just Submitted</span>
-                            <p class="column-count">Loading...</p>
-                        </div>
-
-                        <div class="feature-cards">
-                            <!-- Populated dynamically from Google Sheets API -->
-                        </div>
-                    </div>
-
-                    <!-- Column 2: Prioritising -->
-                    <div class="roadmap-column" data-column="prioritising">
-                        <div class="roadmap-column-header">
-                            <h3>🟠 Prioritising</h3>
-                            <span class="status-badge priority">We're Considering</span>
-                            <p class="column-count">Loading...</p>
-                        </div>
-
-                        <div class="feature-cards">
-                            <!-- Populated dynamically from Google Sheets API -->
-                        </div>
-                    </div>
+                    <section class="roadmap-column" data-column="community-requests" aria-labelledby="community-requests-title">
+                        <header class="roadmap-column-header"><h3 id="community-requests-title">Community requests</h3><span class="status-badge community">Just submitted</span><p class="column-count" aria-live="polite">Loading…</p></header>
+                        <div class="feature-cards"></div>
+                    </section>
+                    <section class="roadmap-column" data-column="prioritising" aria-labelledby="prioritising-title">
+                        <header class="roadmap-column-header"><h3 id="prioritising-title">Prioritising</h3><span class="status-badge priority">Considering</span><p class="column-count" aria-live="polite">Loading…</p></header>
+                        <div class="feature-cards"></div>
+                    </section>
                 </div>
             </div>
         </section>
 
-        <!-- Official Roadmap Section -->
-        <section class="roadmap-section">
+        <section class="roadmap-section" aria-labelledby="official-title">
             <div class="container">
-                <div class="roadmap-section-header">
-                    <h2>📍 Official Roadmap</h2>
-                    <p>Our committed plan - voting helps us prioritize</p>
-                </div>
-
+                <div class="roadmap-section-header"><p class="section-kicker">Official register</p><h2 id="official-title">Committed and exploratory work</h2><p>Voting informs priority; status reflects the current product plan.</p></div>
                 <div class="roadmap-kanban">
-                    <!-- Column 3: Planned (Coming Soon) -->
-                    <div class="roadmap-column" data-column="planned">
-                        <div class="roadmap-column-header">
-                            <h3>🔵 Planned</h3>
-                            <span class="status-badge planned">Coming Soon</span>
-                            <p class="column-count">Loading...</p>
-                        </div>
-
-                        <div class="feature-cards">
-                            <!-- Populated dynamically from Google Sheets API -->
-                        </div>
-                    </div>
-
-                    <!-- Column 4: Building (Next Up) -->
-                    <div class="roadmap-column" data-column="building">
-                        <div class="roadmap-column-header">
-                            <h3>🟡 Building</h3>
-                            <span class="status-badge building">In Development</span>
-                            <p class="column-count">Loading...</p>
-                        </div>
-
-                        <div class="feature-cards">
-                            <!-- Populated dynamically from Google Sheets API -->
-                        </div>
-                    </div>
-
-                    <!-- Column 5: Exploring (Future Vision) -->
-                    <div class="roadmap-column" data-column="exploring">
-                        <div class="roadmap-column-header">
-                            <h3>⚪ Exploring</h3>
-                            <span class="status-badge exploring">Future Ideas</span>
-                            <p class="column-count">Loading...</p>
-                        </div>
-
-                        <div class="feature-cards">
-                            <!-- Populated dynamically from Google Sheets API -->
-                        </div>
-                    </div>
+                    <section class="roadmap-column" data-column="planned" aria-labelledby="planned-title">
+                        <header class="roadmap-column-header"><h3 id="planned-title">Planned</h3><span class="status-badge planned">Coming soon</span><p class="column-count" aria-live="polite">Loading…</p></header>
+                        <div class="feature-cards"></div>
+                    </section>
+                    <section class="roadmap-column" data-column="building" aria-labelledby="building-title">
+                        <header class="roadmap-column-header"><h3 id="building-title">Building</h3><span class="status-badge building">In development</span><p class="column-count" aria-live="polite">Loading…</p></header>
+                        <div class="feature-cards"></div>
+                    </section>
+                    <section class="roadmap-column" data-column="exploring" aria-labelledby="exploring-title">
+                        <header class="roadmap-column-header"><h3 id="exploring-title">Exploring</h3><span class="status-badge exploring">Future ideas</span><p class="column-count" aria-live="polite">Loading…</p></header>
+                        <div class="feature-cards"></div>
+                    </section>
                 </div>
             </div>
         </section>
 
-        <!-- Delivered Section (Timeline) -->
-        <section class="delivered-section">
+        <section class="delivered-section" aria-labelledby="delivered-title">
             <div class="container">
-                <div class="roadmap-section-header">
-                    <h2>✅ Delivered</h2>
-                    <p>Features we've shipped - see what the community voted for!</p>
-                </div>
-
-                <div class="delivered-timeline">
-                    <!-- Populated dynamically from Google Sheets API -->
-                </div>
+                <div class="roadmap-section-header"><p class="section-kicker">Release record</p><h2 id="delivered-title">Delivered</h2><p>Completed roadmap items, grouped by release period.</p></div>
+                <div class="delivered-timeline" aria-live="polite"></div>
             </div>
         </section>
 
-        <!-- Commitment Section -->
-        <section class="roadmap-section">
-            <div class="container">
-                <div class="policy-content">
-                    <div class="policy-highlight">
-                        <p><strong>Our Commitment:</strong> All features will maintain our privacy-first approach. Your data stays on your device unless you explicitly choose to sync via iCloud. We'll never collect, sell, or share your location data.</p>
-                        <p style="margin-top: 1rem;"><strong>Note:</strong> Voting is now live! Your votes are saved and help us prioritize what to build next. You can vote once per feature, and unvote anytime by clicking the "✅ Voted" button.</p>
-                    </div>
-                </div>
-            </div>
+        <section class="roadmap-section" aria-labelledby="commitment-title">
+            <div class="container"><div class="policy-content"><div class="policy-highlight"><h2 id="commitment-title">The privacy commitment does not move.</h2><p>Every feature must preserve the core model: travel data stays on your devices unless you explicitly enable sync through your personal iCloud account. Atlas Logged does not sell location data.</p><p>You can vote once per feature and remove a vote at any time.</p></div></div></div>
         </section>
     </main>
 
-    <!-- Floating Action Button -->
-    <div class="fab-container">
-        <button class="fab-button" id="openModal">
-            💡 Suggest a Feature
-        </button>
-    </div>
-
-    <!-- Feature Submission Modal -->
-    <div class="modal" id="featureModal">
+    <div class="modal" id="featureModal" role="dialog" aria-modal="true" aria-labelledby="featureModalTitle" aria-describedby="featureModalDescription" aria-hidden="true">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>💡 Suggest a Feature</h3>
-                <button class="close-modal" id="closeModal" aria-label="Close modal">&times;</button>
-            </div>
+            <header class="modal-header"><h2 id="featureModalTitle">Suggest a feature</h2><button class="close-modal" id="closeModal" type="button" aria-label="Close feature suggestion dialog">&times;</button></header>
+            <p id="featureModalDescription">Your suggestion is sent to the public roadmap service and may appear in the community register.</p>
             <form id="feature-form">
-                <div class="form-group">
-                    <label for="feature-title">Feature Title *</label>
-                    <input type="text" id="feature-title" placeholder="E.g. Dark Mode Support" maxlength="100" required>
-                    <div class="char-count"><span id="title-count">0</span>/100</div>
-                </div>
-                <div class="form-group">
-                    <label for="feature-description">Description *</label>
-                    <textarea id="feature-description" placeholder="Describe your feature idea..." maxlength="500" required></textarea>
-                    <div class="char-count"><span id="desc-count">0</span>/500</div>
-                </div>
-                <div class="form-group">
-                    <label for="feature-email">Email (optional)</label>
-                    <input type="email" id="feature-email" placeholder="your@email.com">
-                </div>
-                <button type="submit" class="submit-button">Submit Feature Request</button>
+                <div class="form-group"><label for="feature-title">Feature title</label><input type="text" id="feature-title" placeholder="For example: dark mode" maxlength="100" required><div class="char-count"><span id="title-count">0</span>/100</div></div>
+                <div class="form-group"><label for="feature-description">Description</label><textarea id="feature-description" placeholder="What should it do, and why would it help?" maxlength="500" required></textarea><div class="char-count"><span id="desc-count">0</span>/500</div></div>
+                <div class="form-group"><label for="feature-email">Email <span aria-hidden="true">·</span> optional</label><input type="email" id="feature-email" autocomplete="email" placeholder="you@example.com"></div>
+                <p id="feature-form-status" role="status" aria-live="polite"></p>
+                <button type="submit" class="submit-button">Submit feature request</button>
             </form>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="assets/logo.png" alt="Atlas Logged">
-                    <p>Privacy-first location tracking</p>
-                </div>
-                <div class="footer-links">
-                    <a href="index.html#features">Features</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="location-faq.html">Location FAQ</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Atlas Logged. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Prototype JavaScript -->
-    <script>
-        // Modal controls
-        const modal = document.getElementById('featureModal');
-        const openModalBtn = document.getElementById('openModal');
-        const closeModalBtn = document.getElementById('closeModal');
-
-        openModalBtn.addEventListener('click', () => {
-            modal.classList.add('active');
-        });
-
-        closeModalBtn.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-
-        // Close modal when clicking outside
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-            }
-        });
-
-        // Close modal on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                modal.classList.remove('active');
-            }
-        });
-
-        // Character counters
-        document.getElementById('feature-title').addEventListener('input', function(e) {
-            document.getElementById('title-count').textContent = e.target.value.length;
-        });
-
-        document.getElementById('feature-description').addEventListener('input', function(e) {
-            document.getElementById('desc-count').textContent = e.target.value.length;
-        });
-
-        // Form submission (real API call)
-        document.getElementById('feature-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const title = document.getElementById('feature-title').value;
-            const description = document.getElementById('feature-description').value;
-            const email = document.getElementById('feature-email').value;
-
-            // Disable submit button
-            const submitButton = this.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
-            submitButton.disabled = true;
-            submitButton.textContent = 'Submitting...';
-
-            // Call API (if function exists)
-            if (typeof submitFeature === 'function') {
-                const success = await submitFeature(title, description, email);
-                if (success) {
-                    alert('✅ Feature submitted successfully! It will appear in "Community Requests" after a few seconds.');
-                    modal.classList.remove('active');
-                    this.reset();
-                    document.getElementById('title-count').textContent = '0';
-                    document.getElementById('desc-count').textContent = '0';
-                }
-            } else {
-                alert('✅ Feature submitted: "' + title + '"\n\n(API not loaded yet)');
-                modal.classList.remove('active');
-                this.reset();
-                document.getElementById('title-count').textContent = '0';
-                document.getElementById('desc-count').textContent = '0';
-            }
-
-            // Re-enable submit button
-            submitButton.disabled = false;
-            submitButton.textContent = originalText;
-        });
-
-        // All voting logic is handled by roadmap-api.js
-    </script>
-
-    <!-- Feature Flags -->
-    <script src="js/feature-flags.js"></script>
-
-    <!-- Custom JavaScript -->
+    <footer><div class="container"><div class="footer-content"><div class="footer-brand"><img src="assets/logo.png" alt=""><p>Privacy-first location tracking for iOS.</p></div><div class="footer-links"><a href="index.html">Home</a><a href="changelog.html">What's new</a><a href="roadmap.html" aria-current="page">Roadmap</a><a href="privacy.html">Privacy policy</a><a href="location-faq.html">Location FAQ</a></div></div><div class="footer-bottom"><p>&copy; 2026 Atlas Logged. All rights reserved.</p></div></div></footer>
+    <script src="js/cookie-consent.js"></script>
     <script src="js/main.js"></script>
-
-    <!-- Roadmap API Integration -->
     <script src="js/roadmap-api.js"></script>
 </body>
-
 </html>

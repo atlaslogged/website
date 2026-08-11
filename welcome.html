@@ -2,207 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Welcome to Atlas Logged - Your Personal Travel Companion">
-    <title>Welcome to Atlas Logged</title>
-
-    <!-- Favicon -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Welcome to Atlas Logged, the privacy-first travel journal for iPhone.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#f6f2e9">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://app.chatwoot.com; style-src 'self'; img-src 'self' data: https:; media-src 'self' https://atlaslogged.com; connect-src 'self' https://app.chatwoot.com https://api.country.is; frame-src https://app.chatwoot.com; font-src 'self';">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link rel="canonical" href="https://atlaslogged.com/welcome.html">
+    <meta name="apple-itunes-app" content="app-id=6538725214">
+    <title>Welcome — Atlas Logged</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="assets/favicon.png">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            color: #1e293b;
-        }
-
-        .container {
-            max-width: 900px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .header {
-            text-align: center;
-            padding: 40px 20px 30px;
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-        }
-
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .header p {
-            font-size: 1.2em;
-            opacity: 0.95;
-        }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            background: #000;
-        }
-
-        .video-container video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .content {
-            padding: 40px;
-        }
-
-        .content h2 {
-            text-align: center;
-            font-size: 1.8em;
-            margin-bottom: 30px;
-            color: #1e293b;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .feature {
-            text-align: center;
-        }
-
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 15px;
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-
-        .feature h3 {
-            font-size: 1.3em;
-            margin-bottom: 10px;
-            color: #1e293b;
-        }
-
-        .feature p {
-            color: #64748b;
-            line-height: 1.6;
-        }
-
-        .cta {
-            text-align: center;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #e2e8f0;
-        }
-
-        .cta a {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-size: 1.1em;
-            font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-
-        .cta a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2em;
-            }
-
-            .header p {
-                font-size: 1em;
-            }
-
-            .content {
-                padding: 30px 20px;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-                gap: 25px;
-            }
-        }
-    </style>
+    <link rel="apple-touch-icon" href="assets/logo.png">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Welcome to Atlas Logged</h1>
-            <p>Track your travels, preserve your memories, protect your privacy</p>
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+    <div class="mobile-backdrop" id="mobileBackdrop" aria-hidden="true"></div>
+    <nav aria-label="Primary navigation">
+        <div class="container nav-content">
+            <div class="nav-brand"><a href="index.html"><img src="assets/logo.png" alt="" class="nav-logo"><span class="brand-name">Atlas Logged</span></a></div>
+            <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+            <div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="changelog.html">What's new</a><a href="roadmap.html">Roadmap</a><a href="privacy.html">Privacy</a><a href="location-faq.html">FAQ</a><a href="https://apps.apple.com/us/app/atlas-logged/id6538725214" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download Atlas Logged (opens in new window)">Download</a></div>
         </div>
-
-        <div class="video-container">
-            <video controls poster="https://atlaslogged.com/videos/releases/welcome-thumb.jpg">
-                <source src="https://atlaslogged.com/videos/releases/welcome.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-
-        <div class="content">
-            <h2>What You'll Love</h2>
-
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">📍</div>
-                    <h3>Automatic Tracking</h3>
-                    <p>Automatically log every journey with precise details</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-icon">📊</div>
-                    <h3>Travel Insights</h3>
-                    <p>Get insights into your travel patterns and statistics</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-icon">🔒</div>
-                    <h3>Your Privacy First</h3>
-                    <p>Complete control over your data with customizable privacy levels</p>
+    </nav>
+    <main id="main-content">
+        <section class="privacy" aria-labelledby="welcome-title">
+            <div class="container">
+                <img src="assets/logo.png" alt="" class="section-logo">
+                <p class="section-kicker">Welcome to your private travel journal</p>
+                <h1 id="welcome-title">The places are yours to keep.</h1>
+                <p class="intro">Atlas Logged turns automatic location changes into a useful record of the countries, cities, and days that made up your travels.</p>
+                <div class="welcome-proof">
+                    <div class="media-proof">
+                        <video controls preload="metadata" poster="https://atlaslogged.com/videos/releases/welcome-thumb.jpg">
+                            <source src="https://atlaslogged.com/videos/releases/welcome.mp4" type="video/mp4">
+                            Your browser does not support embedded video. <a href="https://atlaslogged.com/videos/releases/welcome.mp4">Open the welcome video</a>.
+                        </video>
+                    </div>
+                    <div class="welcome-copy">
+                        <p class="metadata-label">Three principles</p>
+                        <h2>Useful by design. Private by default.</h2>
+                        <ul class="welcome-list">
+                            <li><strong>Automatic record.</strong> Capture meaningful location changes without maintaining a manual spreadsheet.</li>
+                            <li><strong>Readable history.</strong> Review your travels in a calendar built for days, places, and patterns.</li>
+                            <li><strong>Precision you choose.</strong> Keep country, city, precise, or maximum detail—and change it when your needs change.</li>
+                        </ul>
+                        <p><a href="index.html" class="button-primary">Explore Atlas Logged</a></p>
+                    </div>
                 </div>
             </div>
-
-            <div class="cta">
-                <a href="index.html">Learn More</a>
-            </div>
-        </div>
-    </div>
+        </section>
+    </main>
+    <footer><div class="container"><div class="footer-content"><div class="footer-brand"><img src="assets/logo.png" alt=""><p>Privacy-first location tracking for iOS.</p></div><div class="footer-links"><a href="index.html">Home</a><a href="changelog.html">What's new</a><a href="roadmap.html">Roadmap</a><a href="privacy.html">Privacy policy</a><a href="location-faq.html">Location FAQ</a></div></div><div class="footer-bottom"><p>&copy; 2026 Atlas Logged. All rights reserved.</p></div></div></footer>
+    <script src="js/cookie-consent.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

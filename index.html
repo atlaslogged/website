@@ -7,436 +7,88 @@
     <meta name="keywords" content="location tracking, privacy, iOS app, travel tracker, country tracker">
     <meta name="author" content="Atlas Codes">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#2563eb">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://app.chatwoot.com https://country.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://app.chatwoot.com https://country.is; frame-src https://app.chatwoot.com; font-src 'self';">
+    <meta name="theme-color" content="#f6f2e9">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://app.chatwoot.com https://api.country.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://app.chatwoot.com https://api.country.is; frame-src https://app.chatwoot.com; font-src 'self';">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-
-    <!-- Canonical URL -->
     <link rel="canonical" href="https://atlaslogged.com/">
-
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://atlaslogged.com/">
     <meta property="og:site_name" content="Atlas Logged">
     <meta property="og:title" content="Atlas Logged - Privacy-First Location Tracking">
     <meta property="og:description" content="Track your travels automatically with complete data privacy. All data stays on your device.">
     <meta property="og:image" content="https://atlaslogged.com/assets/logo.png">
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Atlas Logged - Privacy-First Location Tracking">
     <meta name="twitter:description" content="Track your travels automatically with complete data privacy. All data stays on your device.">
     <meta name="twitter:image" content="https://atlaslogged.com/assets/logo.png">
-
-    <title>Atlas Logged - Privacy-First Location Tracking</title>
-
-    <!-- Apple Smart App Banner -->
     <meta name="apple-itunes-app" content="app-id=6538725214">
-
-    <!-- Preconnect to external domains -->
+    <title>Atlas Logged - Privacy-First Location Tracking</title>
     <link rel="preconnect" href="https://app.chatwoot.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://apps.apple.com">
-
-    <!-- Preload critical resources -->
     <link rel="preload" href="css/style.css" as="style">
-    <link rel="preload" href="assets/logo.png" as="image">
-
-    <!-- Custom CSS -->
+    <link rel="preload" href="assets/screenshots/travel-calendar.jpg" as="image">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/liquid-glass.css">
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
-
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "MobileApplication",
-        "name": "Atlas Logged",
-        "operatingSystem": "iOS 17.0 or later",
-        "applicationCategory": "TravelApplication",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
-        "description": "Privacy-first location tracking for iOS. Track your travels automatically with complete data privacy. All data stays on your device.",
-        "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5",
-            "ratingCount": "1"
-        },
-        "author": {
-            "@type": "Organization",
-            "name": "Atlas Codes"
-        }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Atlas Codes",
-        "url": "https://atlaslogged.com",
-        "logo": "https://atlaslogged.com/assets/logo.png",
-        "description": "Privacy-first location tracking solutions",
-        "email": "support@atlascodes.ai",
-        "sameAs": [],
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "contactType": "Customer Support",
-            "email": "support@atlascodes.ai"
-        }
-    }
-    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"MobileApplication","name":"Atlas Logged","operatingSystem":"iOS 17.0 or later","applicationCategory":"TravelApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Privacy-first location tracking for iOS. Track your travels automatically with complete data privacy. All data stays on your device.","aggregateRating":{"@type":"AggregateRating","ratingValue":"5","ratingCount":"1"},"author":{"@type":"Organization","name":"Atlas Codes"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Atlas Codes","url":"https://atlaslogged.com","logo":"https://atlaslogged.com/assets/logo.png","description":"Privacy-first location tracking solutions","email":"support@atlascodes.ai","sameAs":[],"contactPoint":{"@type":"ContactPoint","contactType":"Customer Support","email":"support@atlascodes.ai"}}</script>
 </head>
 <body>
-
-    <!-- Skip to main content link for accessibility -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
-
-    <!-- SVG Filters for Subtle Glass Distortion (Chromium only) -->
-    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
-        <defs>
-            <!-- Very subtle distortion filter - barely noticeable -->
-            <filter id="glass-distortion" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
-                <feTurbulence
-                    type="fractalNoise"
-                    baseFrequency="0.01 0.01"
-                    numOctaves="1"
-                    seed="7"
-                    result="noise" />
-                <feGaussianBlur in="noise" stdDeviation="1.5" result="smooth" />
-                <feDisplacementMap
-                    in="SourceGraphic"
-                    in2="smooth"
-                    scale="3"
-                    xChannelSelector="R"
-                    yChannelSelector="G" />
-            </filter>
-        </defs>
-    </svg>
-
-    <!-- Mobile Menu Backdrop -->
-    <div class="mobile-backdrop" id="mobileBackdrop"></div>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="nav-content">
-                <div class="nav-brand">
-                    <a href="index.html" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
-                        <img src="assets/logo.png" alt="Atlas Logged" class="nav-logo">
-                        <span class="brand-name">Atlas Logged</span>
-                    </a>
-                </div>
-
-                <!-- Hamburger Menu Button -->
-                <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </button>
-
-                <!-- Navigation Links -->
-                <div class="nav-links" id="navLinks">
-                    <a href="index.html">Home</a>
-                    <a href="#features">Features</a>
-                    <a href="privacy.html">Privacy</a>
-                    <a href="location-faq.html">Location FAQ</a>
-                    <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214?itscg=30200&itsct=apps_box_badge&mttnsubad=6538725214" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download Atlas Logged (opens in new window)">Download</a>
-                </div>
+    <div class="mobile-backdrop" id="mobileBackdrop" aria-hidden="true"></div>
+    <nav aria-label="Primary navigation">
+        <div class="container nav-content">
+            <div class="nav-brand"><a href="index.html"><img src="assets/logo.png" alt="" class="nav-logo"><span class="brand-name">Atlas Logged</span></a></div>
+            <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" aria-current="page">Home</a><a href="changelog.html">What's new</a><a href="roadmap.html">Roadmap</a><a href="privacy.html">Privacy</a><a href="location-faq.html">FAQ</a>
+                <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6538725214" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download Atlas Logged (opens in new window)">Download</a>
             </div>
         </div>
     </nav>
-
-    <!-- Main Content -->
     <main id="main-content">
-        <!-- Hero Section -->
-        <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <img src="assets/logo.png" alt="Atlas Logged" class="hero-logo">
-                <h1>Atlas Logged</h1>
-                <p class="tagline">Privacy-First Location Tracking for iOS</p>
-                <p class="subtitle">See everywhere you've been. Keep your data 100% private.</p>
-                <p class="hero-features">Free • iOS 17+ • No ads, ever</p>
-
-                <!-- Star Rating -->
-                <div class="star-rating" role="img" aria-label="5 stars out of 5">
-                    <span class="stars">⭐⭐⭐⭐⭐</span>
-                    <span class="rating-text">5.0 on App Store</span>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container">
+                <div class="hero-content">
+                    <p class="section-kicker">A private travel journal for iPhone</p>
+                    <img src="assets/logo.png" alt="" class="hero-logo">
+                    <h1 id="hero-title">Keep the places. Keep them yours.</h1>
+                    <p class="tagline">Automatic travel history that stays on your device.</p>
+                    <p class="subtitle">Atlas Logged records the places that matter, then turns them into a calm, useful journal of your travels — without selling, profiling, or centralizing your location data.</p>
+                    <p class="hero-features">Free · iOS 17+ · No ads, ever</p>
+                    <div class="star-rating" role="img" aria-label="5 stars out of 5"><span class="stars">★★★★★</span><span class="rating-text">5.0 on App Store</span></div>
+                    <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6538725214" target="_blank" rel="noopener noreferrer" class="app-store-link" aria-label="Download Atlas Logged on the App Store (opens in new window)"><img src="assets/app-store-badge.svg" alt="Download on the App Store"></a>
                 </div>
-
-                <!-- App Store badge -->
-                <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214?itscg=30200&itsct=apps_box_badge&mttnsubad=6538725214" target="_blank" rel="noopener noreferrer" class="app-store-link" aria-label="Download Atlas Logged on the App Store (opens in new window)">
-                    <img src="assets/app-store-badge.svg" alt="Download on the App Store" style="width: 246px; height: 82px; vertical-align: middle; object-fit: contain;" loading="lazy" />
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2>Simple. Private. Powerful.</h2>
-
-            <div class="features-grid">
-                <div class="feature feature-highlight">
-                    <div class="feature-icon" role="img" aria-label="Lock icon">🔒</div>
-                    <h3>100% Private</h3>
-                    <p>Your location data never leaves your device unless you choose to export it. No servers, no databases, no third-party access. We can't see your data because we don't collect it.</p>
-                </div>
-
-                <div class="feature feature-highlight">
-                    <div class="feature-icon" role="img" aria-label="Globe icon">🌍</div>
-                    <h3>Auto Tracking</h3>
-                    <p>Automatically logs countries and cities you visit in the background. Choose your precision level from country-wide to exact coordinates. Set it and forget it.</p>
-                </div>
-
-                <div class="feature feature-highlight">
-                    <div class="feature-icon" role="img" aria-label="Battery icon">🔋</div>
-                    <h3>Battery Efficient</h3>
-                    <p>Optimized using Apple's native location-change events. Less than 1% battery per day, even on heavy travel days. Smart updates only when you actually move.</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-icon" role="img" aria-label="Calendar icon">📅</div>
-                    <h3>Travel Calendar</h3>
-                    <p>Beautiful visual calendar showing your complete travel history. See where you've been with detailed statistics, trip duration, and distance traveled.</p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-icon" role="img" aria-label="Target icon">🎯</div>
-                    <h3>Configurable Privacy</h3>
-                    <p>Control exactly what gets saved. Choose from Country, City, Precise, or Maximum tracking precision. You can even delete coordinates and keep only location names. <a href="privacy.html">Learn more</a></p>
-                </div>
-
-                <div class="feature">
-                    <div class="feature-icon" role="img" aria-label="Cloud icon">☁️</div>
-                    <h3>Optional iCloud Sync</h3>
-                    <p>Sync across your devices with end-to-end encryption through Apple's iCloud. Your data stays private and always under your control. Completely optional.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Who Is This For Section -->
-    <section class="who-is-this-for">
-        <div class="container">
-            <h2>Perfect For</h2>
-            <p class="section-intro">Whether you're tracking adventures or protecting your privacy, Atlas Logged adapts to your needs.</p>
-
-            <div class="use-cases-grid">
-                <div class="use-case">
-                    <div class="use-case-icon" role="img" aria-label="Airplane icon">✈️</div>
-                    <h3>Frequent Travelers</h3>
-                    <p>Keep a complete log of every country and city you visit. Visualize your travel journey and see your global footprint grow over time.</p>
-                </div>
-
-                <div class="use-case">
-                    <div class="use-case-icon" role="img" aria-label="Shield icon">🛡️</div>
-                    <h3>Privacy-Conscious Users</h3>
-                    <p>Want the convenience of location tracking without corporate surveillance? Your data stays on your device—always.</p>
-                </div>
-
-                <div class="use-case">
-                    <div class="use-case-icon" role="img" aria-label="Camera icon">📸</div>
-                    <h3>Travel Bloggers & Creators</h3>
-                    <p>Document your journeys automatically with detailed trip statistics. Perfect for creating content about your adventures.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Preview Section -->
-    <section class="faq-preview">
-        <div class="container">
-            <h2>Common Questions</h2>
-
-            <div class="faq-preview-list">
-                <div class="faq-preview-item">
-                    <h3>Why is location permission needed?</h3>
-                    <p>Atlas Logged provides automatic location change tracking to give you insights into your travel history. Location permissions allow the app to track your movements in the background while using minimal battery.</p>
-                </div>
-
-                <div class="faq-preview-item">
-                    <h3>Can anyone access my location data?</h3>
-                    <p>No. Atlas Logged keeps your data on-device with optional privacy settings to reduce stored data to only Country and City names. Data can only be exported manually by you.</p>
-                </div>
-
-                <div class="faq-preview-item">
-                    <h3>How does this affect battery life?</h3>
-                    <p>Atlas Logged uses Apple's native 'on location change' events, so the app only activates when you actually move. Even on heavy travel days, battery usage is typically less than 1%.</p>
-                </div>
-            </div>
-
-            <div class="faq-link">
-                <a href="location-faq.html">See all FAQs →</a>
-            </div>
-        </div>
-    </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="assets/logo.png" alt="Atlas Logged" loading="lazy">
-                    <p>Privacy-first location tracking</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#features">Features</a>
-                    <a href="changelog.html">What's New</a>
-                    <a href="roadmap.html">Roadmap</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="location-faq.html">Location FAQ</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Atlas Logged. All rights reserved.</p>
-                <p style="margin-top: 0.5rem; font-size: 0.875rem; color: #64748b;">
-                    Glass effects powered by <a href="https://github.com/dashersw/liquid-glass-js" target="_blank" rel="noopener noreferrer" style="color: #2563eb; text-decoration: none;">liquid-glass-js</a>
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Liquid Glass Settings Panel -->
-    <div class="glass-settings-panel" id="glass-settings-panel">
-        <div class="settings-header">
-            <h3>Liquid Glass Controls</h3>
-            <button id="close-settings" class="close-button" aria-label="Close settings">×</button>
-        </div>
-        <div class="settings-content">
-            <!-- Enable/Disable Toggle -->
-            <div class="setting-group toggle-group">
-                <label for="enableLiquidGlass" class="toggle-label">
-                    <span>Enable Liquid Glass</span>
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="enableLiquidGlass" checked>
-                        <span class="toggle-slider"></span>
+                <div class="hero-proof" aria-label="Atlas Logged product screenshots">
+                    <div class="hero-proof-copy"><p class="metadata-label">A journal, not a surveillance feed</p><p>Browse the month you travelled, review a clear trail of days and places, and choose exactly how much precision the app retains.</p></div>
+                    <div class="hero-proof-images">
+                        <figure class="product-shot"><img src="assets/screenshots/travel-calendar.jpg" width="660" height="1434" alt="Atlas Logged travel calendar showing a month of visits" fetchpriority="high"><figcaption>Travel calendar</figcaption></figure>
+                        <figure class="product-shot"><img src="assets/screenshots/privacy-controls.jpg" width="660" height="1434" alt="Atlas Logged privacy controls with precision options" loading="lazy"><figcaption>Privacy controls</figcaption></figure>
                     </div>
-                </label>
+                </div>
             </div>
-
-            <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 1.5rem 0;">
-
-            <!-- Slider Controls -->
-            <div class="setting-group">
-                <label for="edgeIntensity">
-                    <span>Edge Intensity</span>
-                    <span class="setting-value">0.010</span>
-                </label>
-                <input type="range" id="edgeIntensity" min="0" max="0.1" step="0.001" value="0.01" aria-label="Edge Intensity">
-            </div>
-            <div class="setting-group">
-                <label for="rimIntensity">
-                    <span>Rim Intensity</span>
-                    <span class="setting-value">0.050</span>
-                </label>
-                <input type="range" id="rimIntensity" min="0" max="0.2" step="0.001" value="0.05" aria-label="Rim Intensity">
-            </div>
-            <div class="setting-group">
-                <label for="baseIntensity">
-                    <span>Base Intensity</span>
-                    <span class="setting-value">0.010</span>
-                </label>
-                <input type="range" id="baseIntensity" min="0" max="0.1" step="0.001" value="0.01" aria-label="Base Intensity">
-            </div>
-            <div class="setting-group">
-                <label for="edgeDistance">
-                    <span>Edge Distance</span>
-                    <span class="setting-value">0.150</span>
-                </label>
-                <input type="range" id="edgeDistance" min="0" max="0.5" step="0.01" value="0.15" aria-label="Edge Distance">
-            </div>
-            <div class="setting-group">
-                <label for="rimDistance">
-                    <span>Rim Distance</span>
-                    <span class="setting-value">0.800</span>
-                </label>
-                <input type="range" id="rimDistance" min="0" max="1" step="0.01" value="0.8" aria-label="Rim Distance">
-            </div>
-            <div class="setting-group">
-                <label for="baseDistance">
-                    <span>Base Distance</span>
-                    <span class="setting-value">0.100</span>
-                </label>
-                <input type="range" id="baseDistance" min="0" max="0.5" step="0.01" value="0.1" aria-label="Base Distance">
-            </div>
-            <div class="setting-group">
-                <label for="cornerBoost">
-                    <span>Corner Boost</span>
-                    <span class="setting-value">0.020</span>
-                </label>
-                <input type="range" id="cornerBoost" min="0" max="0.1" step="0.001" value="0.02" aria-label="Corner Boost">
-            </div>
-            <div class="setting-group">
-                <label for="rippleEffect">
-                    <span>Ripple Effect</span>
-                    <span class="setting-value">0.100</span>
-                </label>
-                <input type="range" id="rippleEffect" min="0" max="0.5" step="0.01" value="0.1" aria-label="Ripple Effect">
-            </div>
-            <div class="setting-group">
-                <label for="blurRadius">
-                    <span>Blur Radius</span>
-                    <span class="setting-value">5.000</span>
-                </label>
-                <input type="range" id="blurRadius" min="0" max="15" step="0.1" value="5.0" aria-label="Blur Radius">
-            </div>
-            <div class="setting-group">
-                <label for="tintOpacity">
-                    <span>Tint Opacity</span>
-                    <span class="setting-value">0.200</span>
-                </label>
-                <input type="range" id="tintOpacity" min="0" max="1" step="0.01" value="0.2" aria-label="Tint Opacity">
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="settings-actions">
-                <button id="randomize-button" class="action-button">Randomize</button>
-                <button id="reset-button" class="action-button">Reset to Defaults</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Feature Flags (must load before cookie-consent) -->
-    <script src="js/feature-flags.js"></script>
-
-    <!-- Cookie Consent & Chatwoot Widget -->
-    <!-- Chatwoot loads conditionally based on consent (GDPR-compliant) -->
+        </section>
+        <section id="features" class="features" aria-labelledby="features-title"><div class="container"><p class="section-kicker">The record stays with you</p><h2 id="features-title">Made for a lifetime of travel, not a business model.</h2><div class="features-grid">
+            <article class="feature"><span class="feature-icon" aria-hidden="true">⌁</span><h3>100% Private</h3><p>Your location data never leaves your device unless you choose to export it. No servers, no databases, no third-party access. We can't see your data because we don't collect it.</p></article>
+            <article class="feature"><span class="feature-icon" aria-hidden="true">↗</span><h3>Auto Tracking</h3><p>Automatically logs countries and cities you visit in the background. Choose your precision level from country-wide to exact coordinates. Set it and forget it.</p></article>
+            <article class="feature"><span class="feature-icon" aria-hidden="true">◌</span><h3>Battery Efficient</h3><p>Optimized using Apple's native location-change events. Less than 1% battery per day, even on heavy travel days. Smart updates only when you actually move.</p></article>
+            <article class="feature"><span class="feature-icon" aria-hidden="true">□</span><h3>Travel Calendar</h3><p>A visual calendar for your complete travel history. See where you've been with detailed statistics, trip duration, and distance travelled.</p></article>
+            <article class="feature"><span class="feature-icon" aria-hidden="true">◎</span><h3>Configurable Privacy</h3><p>Control exactly what gets saved. Choose Country, City, Precise, or Maximum tracking precision. You can delete coordinates and keep only location names. <a href="privacy.html">Learn more</a>.</p></article>
+            <article class="feature"><span class="feature-icon" aria-hidden="true">↔</span><h3>Optional iCloud Sync</h3><p>Sync across your devices with end-to-end encryption through Apple's iCloud. Your data stays private and always under your control. Completely optional.</p></article>
+        </div></div></section>
+        <section class="who-is-this-for" aria-labelledby="for-title"><div class="container"><p class="section-kicker">A record for every kind of traveller</p><h2 id="for-title">Your history, in your own words.</h2><p class="section-intro">Atlas Logged adapts to your privacy and travel habits without asking you to trade either away.</p><div class="use-cases-grid">
+            <article class="use-case"><span class="use-case-icon" aria-hidden="true">↗</span><h3>Frequent Travelers</h3><p>Keep a complete log of every country and city you visit. Visualize your travel journey and see your global footprint grow over time.</p></article>
+            <article class="use-case"><span class="use-case-icon" aria-hidden="true">⌁</span><h3>Privacy-Conscious Users</h3><p>Want the convenience of location tracking without corporate surveillance? Your data stays on your device—always.</p></article>
+            <article class="use-case"><span class="use-case-icon" aria-hidden="true">□</span><h3>Travel Creators</h3><p>Document your journeys automatically with detailed trip statistics: a useful reference for the stories you decide to share.</p></article>
+        </div></div></section>
+        <section class="faq-preview" aria-labelledby="questions-title"><div class="container"><p class="section-kicker">Before you set off</p><h2 id="questions-title">Common questions</h2><div class="faq-list">
+            <details class="faq-item"><summary>Why is location permission needed?</summary><div class="faq-answer"><p>Atlas Logged uses automatic location-change tracking to build your travel history while using minimal battery. Manual entry remains available when you prefer it.</p></div></details>
+            <details class="faq-item"><summary>Can anyone access my location data?</summary><div class="faq-answer"><p>No. Your data stays on your devices and, if enabled, in your personal iCloud account. Optional privacy settings can retain only country or city names, and only you can initiate an export.</p></div></details>
+            <details class="faq-item"><summary>How does this affect battery life?</summary><div class="faq-answer"><p>The app uses Apple's native location-change events, so it wakes when you actually move rather than running a constant GPS feed. Even on heavy travel days, use is typically less than 1%.</p></div></details>
+        </div><p class="faq-link"><a href="location-faq.html">Read the location FAQ</a></p></div></section>
+    </main>
+    <footer><div class="container"><div class="footer-content"><div class="footer-brand"><img src="assets/logo.png" alt=""><p>Privacy-first location tracking for iOS.</p></div><div class="footer-links"><a href="index.html" aria-current="page">Home</a><a href="changelog.html">What's new</a><a href="roadmap.html">Roadmap</a><a href="privacy.html">Privacy policy</a><a href="location-faq.html">Location FAQ</a></div></div><div class="footer-bottom"><p>© 2026 Atlas Logged. All rights reserved.</p></div></div></footer>
     <script src="js/cookie-consent.js"></script>
-
-    <!-- Custom JavaScript -->
     <script src="js/main.js"></script>
-
-    <!-- Liquid Glass Library (conditionally loaded based on feature flag) -->
-    <script>
-        // Only load liquid glass if feature flag is enabled
-        if (typeof FEATURE_FLAGS !== 'undefined' && FEATURE_FLAGS.enableLiquidGlass) {
-            // Load html2canvas first
-            const html2canvasScript = document.createElement('script');
-            html2canvasScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
-            html2canvasScript.integrity = 'sha512-tdGfZm98xmSMH/MicDIEDr5Oq6K0B3hLuGvhwM7sg/TxJhx3sW1t7NKfYyNYhvNLR6f1b5fZiwzQdCB0+lMGOA==';
-            html2canvasScript.crossOrigin = 'anonymous';
-            document.body.appendChild(html2canvasScript);
-
-            // Load liquid glass scripts after html2canvas
-            html2canvasScript.onload = function() {
-                ['liquid-glass-container.js', 'liquid-glass-button.js', 'liquid-glass-controls.js'].forEach(script => {
-                    const scriptEl = document.createElement('script');
-                    scriptEl.src = 'js/' + script;
-                    scriptEl.defer = true;
-                    document.body.appendChild(scriptEl);
-                });
-            };
-        }
-    </script>
 </body>
 </html>

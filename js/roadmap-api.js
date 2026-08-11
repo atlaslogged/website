@@ -1,544 +1,303 @@
-// ========================================
-// Atlas Logged Roadmap API Integration
-// Connects roadmap.html to Google Sheets
-// ========================================
+// Atlas Logged Roadmap API integration. The API and data-column contracts are public-site stable.
+(function () {
+    'use strict';
 
-const API_URL = 'https://script.google.com/macros/s/AKfycbxTt6OqQBMj5DeSmQ-yMMUrnAvcuKQJa-pNx7h8KNgAp37PR8GsfaCkQIqOH3vWhWQ-/exec';
+    const API_URL = 'https://script.google.com/macros/s/AKfycbxTt6OqQBMj5DeSmQ-yMMUrnAvcuKQJa-pNx7h8KNgAp37PR8GsfaCkQIqOH3vWhWQ-/exec';
+    const columns = ['community-requests', 'prioritising', 'planned', 'building', 'exploring'];
+    const focusableSelector = 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-// Emoji mapping for feature titles
-const EMOJI_MAP = {
-    'Dark Mode': '🌙',
-    'Custom Tags': '🏷️',
-    'Export to CSV': '📤',
-    'Smart Notifications': '🔔',
-    'Custom Map Styles': '🎨',
-    'Year in Review': '📊',
-    'Travel Goals': '🎯',
-    'Timeline View': '🗓️',
-    'Smart Predictions': '🤖',
-    'Visa Tracking': '✈️',
-    'Premium Features': '💰',
-    'Advanced Notes': '📝',
-    'Photo Integration': '📸',
-    'Performance Boost': '⚡',
-    'Enhanced Stats': '📊',
-    'Mac App': '🖥️',
-    'Family Sharing': '👪',
-    'Third-Party Integrations': '🔌',
-    'Web Dashboard': '🌐',
-    'Travel Planner': '📅',
-    'iCloud Sync': '☁️',
-    'Arabic Support': '🌍',
-    'Map View': '🗺️'
-};
+    function makeElement(tag, className, text) {
+        const element = document.createElement(tag);
+        if (className) element.className = className;
+        if (text !== undefined) element.textContent = text;
+        return element;
+    }
 
-// Status to column mapping
-const STATUS_COLUMNS = {
-    'Under Review': 'community-requests',
-    'Prioritising': 'prioritising',
-    'Planned': 'planned',
-    'In Progress': 'building',
-    'Completed': 'completed',
-    'Exploring': 'exploring'
-};
+    async function loadRoadmapFeatures() {
+        try {
+            const response = await fetch(API_URL);
+            if (!response.ok) throw new Error(`Roadmap service returned ${response.status}`);
+            const result = await response.json();
+            if (!result.success || !Array.isArray(result.data)) throw new Error(result.message || 'Invalid roadmap response');
+            clearStaticFeatures();
+            const grouped = groupFeaturesByStatus(result.data);
+            renderColumn('community-requests', grouped['Under Review'] || []);
+            renderColumn('prioritising', grouped.Prioritising || []);
+            renderColumn('planned', grouped.Planned || []);
+            renderColumn('building', grouped['In Progress'] || []);
+            renderColumn('exploring', grouped.Exploring || []);
+            renderDeliveredTimeline(grouped.Completed || []);
+            restoreVotedState();
+        } catch (error) {
+            console.error('Error loading roadmap features:', error);
+            columns.forEach((columnId) => {
+                const column = document.querySelector(`[data-column="${columnId}"]`);
+                const count = column?.querySelector('.column-count');
+                const container = column?.querySelector('.feature-cards');
+                if (count) count.textContent = 'Unavailable right now';
+                if (container) {
+                    container.replaceChildren(makeElement('p', 'roadmap-empty', 'The live roadmap could not be loaded. Please try again later.'));
+                }
+            });
+            const timeline = document.querySelector('.delivered-timeline');
+            if (timeline) timeline.replaceChildren(makeElement('p', 'roadmap-empty', 'Delivered items are unavailable right now.'));
+        }
+    }
 
-// ========================================
-// FETCH FEATURES FROM API
-// ========================================
+    function groupFeaturesByStatus(features) {
+        return features.reduce((grouped, feature) => {
+            const status = String(feature.status || 'Under Review');
+            (grouped[status] ||= []).push(feature);
+            return grouped;
+        }, {});
+    }
 
-async function loadRoadmapFeatures() {
-    try {
-        const response = await fetch(API_URL);
-        const result = await response.json();
+    function clearStaticFeatures() {
+        columns.forEach((columnId) => {
+            const container = document.querySelector(`[data-column="${columnId}"] .feature-cards`);
+            if (container) container.replaceChildren();
+        });
+    }
 
-        if (!result.success) {
-            console.error('API error:', result.message);
+    function renderColumn(columnId, features) {
+        const container = document.querySelector(`[data-column="${columnId}"] .feature-cards`);
+        const count = document.querySelector(`[data-column="${columnId}"] .column-count`);
+        if (!container) return;
+        if (count) count.textContent = `${features.length} ${features.length === 1 ? 'feature' : 'features'}`;
+        if (features.length === 0) {
+            container.appendChild(makeElement('p', 'roadmap-empty', 'No features are in this stage right now.'));
             return;
         }
-
-        const features = result.data;
-        console.log('Loaded', features.length, 'features from API');
-
-        // Clear existing static content
-        clearStaticFeatures();
-
-        // Group features by status
-        const grouped = groupFeaturesByStatus(features);
-
-        // Render each column
-        renderColumn('community-requests', grouped['Under Review'] || []);
-        renderColumn('prioritising', grouped['Prioritising'] || []);
-        renderColumn('planned', grouped['Planned'] || []);
-        renderColumn('building', grouped['In Progress'] || []);
-        renderColumn('exploring', grouped['Exploring'] || []);
-
-        // Render delivered timeline
-        renderDeliveredTimeline(grouped['Completed'] || []);
-
-        // Restore voted state
-        if (typeof restoreVotedState === 'function') {
-            restoreVotedState();
-        }
-
-    } catch (error) {
-        console.error('Error loading features:', error);
-    }
-}
-
-// ========================================
-// GROUP FEATURES BY STATUS
-// ========================================
-
-function groupFeaturesByStatus(features) {
-    const grouped = {};
-
-    features.forEach(feature => {
-        const status = feature.status;
-        if (!grouped[status]) {
-            grouped[status] = [];
-        }
-        grouped[status].push(feature);
-    });
-
-    return grouped;
-}
-
-// ========================================
-// CLEAR STATIC FEATURES
-// ========================================
-
-function clearStaticFeatures() {
-    const columns = [
-        'community-requests',
-        'prioritising',
-        'planned',
-        'building',
-        'exploring'
-    ];
-
-    columns.forEach(columnId => {
-        const container = document.querySelector(`[data-column="${columnId}"] .feature-cards`);
-        if (container) {
-            container.innerHTML = '';
-        }
-    });
-}
-
-// ========================================
-// RENDER COLUMN
-// ========================================
-
-function renderColumn(columnId, features) {
-    const container = document.querySelector(`[data-column="${columnId}"] .feature-cards`);
-    if (!container) {
-        console.warn('Column not found:', columnId);
-        return;
+        features.forEach((feature) => container.appendChild(createFeatureCard(feature)));
     }
 
-    // Update count
-    const countElem = document.querySelector(`[data-column="${columnId}"] .column-count`);
-    if (countElem) {
-        countElem.textContent = features.length + ' ' + (features.length === 1 ? 'feature' : 'features');
+    function createFeatureCard(feature) {
+        const card = makeElement('article', 'feature-card');
+        card.dataset.featureId = String(feature.id);
+        const title = String(feature.title || 'Untitled feature');
+        const isFrozen = feature.status === 'In Progress' || feature.status === 'Completed';
+        const isYourSubmission = getSubmittedFeatures().map(String).includes(String(feature.id));
+        const isVoted = getVotedFeatures().map(String).includes(String(feature.id));
+
+        const heading = makeElement('h4');
+        heading.append(title);
+        if (isYourSubmission) heading.appendChild(makeElement('span', 'submission-badge', 'Your submission'));
+        const description = makeElement('p', null, String(feature.description || ''));
+        const voteSection = makeElement('div', 'vote-section');
+        const button = makeElement('button', `vote-button${isFrozen ? ' frozen' : ''}${isVoted ? ' voted' : ''}`, isFrozen ? 'Locked' : (isVoted ? 'Voted' : 'Vote'));
+        button.type = 'button';
+        button.disabled = isFrozen;
+        button.setAttribute('aria-pressed', String(isVoted));
+        button.addEventListener('click', () => voteForFeature(feature.id, button));
+        voteSection.append(button, makeElement('span', 'vote-count', `${Number(feature.votes) || 0} votes`));
+        card.append(heading, description, voteSection);
+        return card;
     }
 
-    // Render cards
-    features.forEach(feature => {
-        const card = createFeatureCard(feature, columnId);
-        container.appendChild(card);
-    });
-}
-
-// ========================================
-// CREATE FEATURE CARD
-// ========================================
-
-function createFeatureCard(feature, columnId) {
-    const card = document.createElement('div');
-    card.className = 'feature-card';
-    card.dataset.featureId = feature.id;
-
-    const emoji = EMOJI_MAP[feature.title] || '✨';
-    const isFrozen = feature.status === 'In Progress' || feature.status === 'Completed';
-    const submittedFeatures = getSubmittedFeatures();
-    const isYourSubmission = submittedFeatures.includes(feature.id);
-
-    // Check if user has already voted for this feature
-    const votedFeatures = getVotedFeatures();
-    const featureIdStr = String(feature.id);
-    const isVoted = votedFeatures.includes(featureIdStr);
-
-    card.innerHTML = `
-        <h4>
-            ${emoji} ${feature.title}
-            ${isYourSubmission ? '<span class="submission-badge">Your submission</span>' : ''}
-        </h4>
-        <p>${feature.description}</p>
-        <div class="vote-section">
-            <button class="vote-button ${isFrozen ? 'frozen' : (isVoted ? 'voted' : '')}"
-                    ${isFrozen ? 'disabled' : ''}
-                    onclick="voteForFeature(${feature.id}, this)">
-                ${isFrozen ? '🔒 Frozen' : (isVoted ? '✅ Voted' : '⬆️ Vote')}
-            </button>
-            <span class="vote-count">${feature.votes} votes</span>
-        </div>
-    `;
-
-    return card;
-}
-
-// ========================================
-// RENDER DELIVERED TIMELINE
-// ========================================
-
-function renderDeliveredTimeline(completedFeatures) {
-    const timeline = document.querySelector('.delivered-timeline');
-    if (!timeline) return;
-
-    // Clear existing content except the changelog link
-    const changelogLink = timeline.querySelector('.view-changelog-link');
-    timeline.innerHTML = '';
-
-    // Group by version (we'll just group by month for now)
-    const byMonth = {};
-
-    completedFeatures.forEach(feature => {
-        const date = new Date(feature.submitted);
-        const monthKey = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-
-        if (!byMonth[monthKey]) {
-            byMonth[monthKey] = {
-                date: date,
-                features: []
-            };
+    function renderDeliveredTimeline(features) {
+        const timeline = document.querySelector('.delivered-timeline');
+        if (!timeline) return;
+        timeline.replaceChildren();
+        if (features.length === 0) {
+            timeline.appendChild(makeElement('p', 'roadmap-empty', 'No delivered roadmap items are listed yet.'));
+            return;
         }
-        byMonth[monthKey].features.push(feature);
-    });
-
-    // Sort by date (newest first)
-    const sortedMonths = Object.entries(byMonth).sort((a, b) => b[1].date - a[1].date);
-
-    // Render each release group
-    sortedMonths.forEach(([monthKey, data], index) => {
-        const releaseGroup = document.createElement('div');
-        releaseGroup.className = 'release-group';
-
-        const header = document.createElement('div');
-        header.className = 'release-header';
-        header.innerHTML = `
-            <h3 class="release-version">Released ${monthKey}</h3>
-            <p class="release-date">${data.features.length} feature${data.features.length !== 1 ? 's' : ''}</p>
-        `;
-        releaseGroup.appendChild(header);
-
-        const featuresContainer = document.createElement('div');
-        featuresContainer.className = 'release-features';
-
-        data.features.forEach(feature => {
-            const emoji = EMOJI_MAP[feature.title] || '✨';
-            const card = document.createElement('div');
-            card.className = 'delivered-card';
-            card.innerHTML = `
-                <h4>${emoji} ${feature.title}</h4>
-                <p>${feature.description}</p>
-                <div class="final-votes">
-                    ✅ ${feature.votes} community votes
-                </div>
-            `;
-            featuresContainer.appendChild(card);
+        const byMonth = {};
+        features.forEach((feature) => {
+            const date = new Date(feature.submitted);
+            const validDate = Number.isNaN(date.valueOf()) ? new Date() : date;
+            const key = validDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+            (byMonth[key] ||= { date: validDate, features: [] }).features.push(feature);
         });
-
-        releaseGroup.appendChild(featuresContainer);
-        timeline.appendChild(releaseGroup);
-    });
-
-    // Re-add changelog link
-    if (changelogLink) {
-        const linkWrapper = document.createElement('div');
-        linkWrapper.style.textAlign = 'center';
-        linkWrapper.style.marginTop = '3rem';
-        linkWrapper.appendChild(changelogLink.cloneNode(true));
-        timeline.appendChild(linkWrapper);
-    } else {
-        const linkWrapper = document.createElement('div');
-        linkWrapper.style.textAlign = 'center';
-        linkWrapper.style.marginTop = '3rem';
-        linkWrapper.innerHTML = `
-            <a href="changelog.html" class="view-changelog-link">
-                View Full Changelog →
-            </a>
-        `;
-        timeline.appendChild(linkWrapper);
+        Object.entries(byMonth).sort((a, b) => b[1].date - a[1].date).forEach(([month, release]) => {
+            const group = makeElement('section', 'release-group');
+            const header = makeElement('header', 'release-header');
+            header.append(makeElement('h3', 'release-version', `Released ${month}`), makeElement('p', 'release-date', `${release.features.length} feature${release.features.length === 1 ? '' : 's'}`));
+            const list = makeElement('div', 'release-features');
+            release.features.forEach((feature) => {
+                const card = makeElement('article', 'delivered-card');
+                card.append(makeElement('h4', null, String(feature.title || 'Untitled feature')), makeElement('p', null, String(feature.description || '')), makeElement('div', 'final-votes', `${Number(feature.votes) || 0} community votes`));
+                list.appendChild(card);
+            });
+            group.append(header, list);
+            timeline.appendChild(group);
+        });
+        const link = document.createElement('a');
+        link.href = 'changelog.html';
+        link.className = 'view-changelog-link';
+        link.textContent = 'View full changelog';
+        timeline.appendChild(link);
     }
-}
 
-// ========================================
-// LOCALSTORAGE HELPERS FOR VOTE PERSISTENCE
-// ========================================
+    function readStoredList(key) {
+        try {
+            const value = JSON.parse(localStorage.getItem(key) || '[]');
+            return Array.isArray(value) ? value : [];
+        } catch {
+            return [];
+        }
+    }
+    function writeStoredList(key, values) {
+        try {
+            localStorage.setItem(key, JSON.stringify(values));
+        } catch {
+            // Voting and submission still work when browser storage is unavailable.
+        }
+    }
+    function getVotedFeatures() { return readStoredList('atlas_voted_features'); }
+    function saveVotedFeatures(features) { writeStoredList('atlas_voted_features', features); }
+    function getSubmittedFeatures() { return readStoredList('atlas_submitted_features'); }
+    function saveSubmittedFeatures(features) { writeStoredList('atlas_submitted_features', features); }
 
-function getVotedFeatures() {
-    const voted = localStorage.getItem('atlas_voted_features');
-    return voted ? JSON.parse(voted) : [];
-}
+    function restoreVotedState() {
+        const voted = getVotedFeatures().map(String);
+        document.querySelectorAll('.vote-button:not(.frozen)').forEach((button) => {
+            const card = button.closest('.feature-card');
+            if (card && voted.includes(String(card.dataset.featureId))) setVoteButton(button, true);
+        });
+    }
 
-function saveVotedFeatures(votedArray) {
-    localStorage.setItem('atlas_voted_features', JSON.stringify(votedArray));
-}
+    function setVoteButton(button, voted, loading = false) {
+        button.classList.toggle('voted', voted);
+        button.classList.toggle('loading', loading);
+        button.disabled = loading;
+        button.setAttribute('aria-pressed', String(voted));
+        button.textContent = loading ? 'Saving…' : (voted ? 'Voted' : 'Vote');
+    }
 
-function getSubmittedFeatures() {
-    const submitted = localStorage.getItem('atlas_submitted_features');
-    return submitted ? JSON.parse(submitted) : [];
-}
-
-function saveSubmittedFeatures(submittedArray) {
-    localStorage.setItem('atlas_submitted_features', JSON.stringify(submittedArray));
-}
-
-function restoreVotedState() {
-    const votedFeatures = getVotedFeatures();
-    document.querySelectorAll('.vote-button:not(.frozen)').forEach(button => {
+    function showVoteError(button, message) {
         const card = button.closest('.feature-card');
         if (!card) return;
-
-        const featureId = parseInt(card.dataset.featureId);
-        if (votedFeatures.includes(featureId)) {
-            button.classList.add('voted');
-            button.innerHTML = '✅ Voted';
-        }
-    });
-}
-
-// ========================================
-// SHOW VOTE ERROR (SUBTLE UI FEEDBACK)
-// ========================================
-
-function showVoteError(button, message) {
-    // Create error tooltip
-    const card = button.closest('.feature-card');
-    if (!card) return;
-
-    // Remove any existing error messages
-    const existingError = card.querySelector('.vote-error-message');
-    if (existingError) {
-        existingError.remove();
+        card.querySelector('.vote-error-message')?.remove();
+        const error = makeElement('p', 'vote-error-message', message);
+        error.setAttribute('role', 'status');
+        card.appendChild(error);
+        window.setTimeout(() => error.remove(), 4000);
     }
 
-    // Create new error message
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'vote-error-message';
-    errorDiv.textContent = message;
+    async function voteForFeature(featureId, button) {
+        if (button.disabled || button.classList.contains('frozen')) return;
+        const voted = getVotedFeatures().map(String);
+        const id = String(featureId);
+        const wasVoted = button.classList.contains('voted');
+        const nextVoted = !wasVoted;
+        const count = button.parentElement?.querySelector('.vote-count');
+        const currentCount = Number.parseInt(count?.textContent || '0', 10) || 0;
+        const optimisticCount = Math.max(0, currentCount + (nextVoted ? 1 : -1));
 
-    // Insert after vote section
-    const voteSection = button.parentElement;
-    voteSection.parentElement.insertBefore(errorDiv, voteSection.nextSibling);
+        if (count) count.textContent = `${optimisticCount} votes`;
+        setVoteButton(button, nextVoted, true);
 
-    // Auto-remove after 4 seconds
-    setTimeout(() => {
-        errorDiv.style.opacity = '0';
-        setTimeout(() => errorDiv.remove(), 300);
-    }, 4000);
-}
+        try {
+            const action = wasVoted ? 'unvote' : 'vote';
+            const response = await fetch(`${API_URL}?action=${action}&id=${encodeURIComponent(id)}&userAgent=${encodeURIComponent(navigator.userAgent)}&ipAddress=unknown`);
+            if (!response.ok) throw new Error(`Vote service returned ${response.status}`);
+            const result = await response.json();
+            if (!result.success) throw new Error(result.message || 'Vote could not be saved');
 
-// ========================================
-// VOTE FOR FEATURE (REAL API CALL)
-// ========================================
-
-async function voteForFeature(featureId, button) {
-    // Convert featureId to string for consistent comparison
-    featureId = String(featureId);
-
-    // Ignore frozen or loading buttons
-    if (button.disabled || button.classList.contains('frozen') || button.classList.contains('loading')) {
-        return;
+            const nextStoredVotes = voted.filter((storedID) => storedID !== id);
+            if (nextVoted) nextStoredVotes.push(id);
+            saveVotedFeatures(nextStoredVotes);
+            const serverCount = Number(result.data?.newVotes);
+            if (count) count.textContent = `${Number.isFinite(serverCount) ? serverCount : optimisticCount} votes`;
+            setVoteButton(button, nextVoted);
+        } catch (error) {
+            if (count) count.textContent = `${currentCount} votes`;
+            setVoteButton(button, wasVoted);
+            showVoteError(button, 'The vote service is unavailable. Your vote was not changed.');
+            console.error('Error voting:', error);
+        }
     }
 
-    const votedFeatures = getVotedFeatures();
-    const isVoted = button.classList.contains('voted');
-    const voteCount = button.parentElement.querySelector('.vote-count');
-
-    // Store original state for rollback
-    const originalButtonHTML = button.innerHTML;
-    const originalButtonClasses = button.className;
-    const originalVoteText = voteCount ? voteCount.textContent : '';
-    const originalVoteNumber = originalVoteText ? parseInt(originalVoteText) : 0;
-
-    // OPTIMISTIC UPDATE - Update UI immediately
-    button.classList.add('loading');
-    button.disabled = true;
-
-    if (isVoted) {
-        // Optimistic unvote
-        button.classList.remove('voted');
-        button.innerHTML = '⬆️ Vote <span style="display:inline-block;animation:spin 0.6s linear infinite;margin-left:4px;">⏳</span>';
-
-        if (voteCount) {
-            voteCount.textContent = Math.max(0, originalVoteNumber - 1) + ' votes';
-        }
-
-        // Update localStorage immediately
-        const index = votedFeatures.indexOf(featureId);
-        if (index > -1) {
-            votedFeatures.splice(index, 1);
-            saveVotedFeatures(votedFeatures);
-        }
-    } else {
-        // Optimistic vote
-        button.classList.add('voted');
-        button.innerHTML = '✅ Voted <span style="display:inline-block;animation:spin 0.6s linear infinite;margin-left:4px;">⏳</span>';
-
-        if (voteCount) {
-            voteCount.textContent = (originalVoteNumber + 1) + ' votes';
-        }
-
-        // Update localStorage immediately
-        votedFeatures.push(featureId);
-        saveVotedFeatures(votedFeatures);
-    }
-
-    // Make API call in background
-    try {
-        const action = isVoted ? 'unvote' : 'vote';
-        const response = await fetch(`${API_URL}?action=${action}&id=${featureId}&userAgent=${navigator.userAgent}&ipAddress=unknown`);
-        const result = await response.json();
-
-        if (result.success) {
-            // Update with real vote count from server
-            if (voteCount) {
-                voteCount.textContent = result.data.newVotes + ' votes';
+    async function submitFeature(title, description, email) {
+        try {
+            const body = new URLSearchParams({ title, description, email: email || 'Anonymous' });
+            const response = await fetch(API_URL, { method: 'POST', body });
+            if (!response.ok) throw new Error(`Submission service returned ${response.status}`);
+            const result = await response.json();
+            if (!result.success) return { success: false, message: result.message || 'Submission failed.' };
+            const submitted = getSubmittedFeatures();
+            if (result.data?.id !== undefined) {
+                submitted.push(result.data.id);
+                saveSubmittedFeatures([...new Set(submitted.map(String))]);
             }
-
-            // Remove loading state
-            button.classList.remove('loading');
-            button.disabled = false;
-            button.innerHTML = isVoted ? '⬆️ Vote' : '✅ Voted';
-
-            console.log(isVoted ? 'Vote removed:' : 'Vote recorded:', result.data);
-        } else {
-            // Check if error is "already voted" - sync localStorage with server state
-            if (result.message && result.message.includes('already voted')) {
-                // Server says we voted, but localStorage didn't know
-                // Sync the state: mark as voted in localStorage
-                if (!votedFeatures.includes(featureId)) {
-                    votedFeatures.push(featureId);
-                    saveVotedFeatures(votedFeatures);
-                }
-
-                // Update UI to show voted state (keep the optimistic count)
-                button.classList.remove('loading');
-                button.classList.add('voted');
-                button.disabled = false;
-                button.innerHTML = '✅ Voted';
-
-                console.log('Synced vote state from server for feature', featureId);
-            } else if (result.message && result.message.includes('have not voted')) {
-                // Server says we didn't vote, but localStorage thought we did
-                // Sync the state: remove from localStorage
-                const index = votedFeatures.indexOf(featureId);
-                if (index > -1) {
-                    votedFeatures.splice(index, 1);
-                    saveVotedFeatures(votedFeatures);
-                }
-
-                // Update UI to show unvoted state
-                button.classList.remove('loading');
-                button.classList.remove('voted');
-                button.disabled = false;
-                button.innerHTML = '⬆️ Vote';
-
-                console.log('Synced unvote state from server for feature', featureId);
-            } else {
-                // Other error - keep optimistic update, don't rollback
-                button.classList.remove('loading');
-                button.disabled = false;
-
-                // Keep the voted state in UI (don't rollback)
-                if (!isVoted) {
-                    // Was trying to vote - keep voted state
-                    button.classList.add('voted');
-                    button.innerHTML = '✅ Voted';
-                } else {
-                    // Was trying to unvote - keep unvoted state
-                    button.classList.remove('voted');
-                    button.innerHTML = '⬆️ Vote';
-                }
-
-                // Do NOT modify localStorage - keep the optimistic update
-                // Vote will sync with server on next successful page load
-
-                // Show subtle error message instead of alert
-                showVoteError(button, result.message || 'Saved offline. Will sync when online.');
-            }
+            window.setTimeout(loadRoadmapFeatures, 1000);
+            return { success: true, message: 'Feature submitted successfully.' };
+        } catch (error) {
+            console.error('Error submitting feature:', error);
+            return { success: false, message: 'Submission failed. Please try again.' };
         }
-    } catch (error) {
-        // On error, DO NOT rollback localStorage - keep the optimistic update
-        // This ensures votes persist even if the API is temporarily unavailable
-        console.error('Error voting:', error);
-
-        // Remove loading state
-        button.classList.remove('loading');
-        button.disabled = false;
-
-        // Keep the voted state in UI (don't rollback)
-        if (!isVoted) {
-            // Was trying to vote - keep voted state
-            button.classList.add('voted');
-            button.innerHTML = '✅ Voted';
-        } else {
-            // Was trying to unvote - keep unvoted state
-            button.classList.remove('voted');
-            button.innerHTML = '⬆️ Vote';
-        }
-
-        // Do NOT modify localStorage - keep the optimistic update
-        // Vote will sync with server on next successful page load
-
-        // Show subtle error message instead of alert
-        showVoteError(button, 'Saved offline. Will sync when online.');
     }
-}
 
-// ========================================
-// SUBMIT NEW FEATURE (REAL API CALL)
-// ========================================
-
-async function submitFeature(title, description, email) {
-    try {
-        // Use form encoding instead of JSON to avoid CORS preflight
-        const formData = new URLSearchParams();
-        formData.append('title', title);
-        formData.append('description', description);
-        formData.append('email', email || 'Anonymous');
-
-        const response = await fetch(API_URL, {
-            method: 'POST',
-            body: formData
+    function initModal() {
+        const modal = document.getElementById('featureModal');
+        const opener = document.getElementById('openModal');
+        const close = document.getElementById('closeModal');
+        const form = document.getElementById('feature-form');
+        if (!modal || !opener || !close || !form) return;
+        let returnFocus = null;
+        const closeModal = () => {
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+            if (returnFocus instanceof HTMLElement) returnFocus.focus();
+        };
+        const openModal = () => {
+            returnFocus = document.activeElement;
+            const status = document.getElementById('feature-form-status');
+            if (status) status.textContent = '';
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+            document.getElementById('feature-title')?.focus();
+        };
+        opener.addEventListener('click', openModal);
+        close.addEventListener('click', closeModal);
+        modal.addEventListener('click', (event) => { if (event.target === modal) closeModal(); });
+        document.addEventListener('keydown', (event) => {
+            if (!modal.classList.contains('active')) return;
+            if (event.key === 'Escape') { event.preventDefault(); closeModal(); return; }
+            if (event.key !== 'Tab') return;
+            const focusable = [...modal.querySelectorAll(focusableSelector)];
+            const first = focusable[0];
+            const last = focusable.at(-1);
+            if (!first || !last) return;
+            if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+            if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
         });
-
-        const result = await response.json();
-
-        if (result.success) {
-            console.log('Feature submitted:', result.data);
-
-            // Save submission to localStorage
-            const submittedFeatures = getSubmittedFeatures();
-            submittedFeatures.push(result.data.id);
-            saveSubmittedFeatures(submittedFeatures);
-
-            // Reload features to show new submission with badge
-            setTimeout(() => loadRoadmapFeatures(), 1000);
-            return { success: true, message: 'Feature submitted successfully!' };
-        } else {
-            return { success: false, message: result.message };
-        }
-    } catch (error) {
-        console.error('Error submitting feature:', error);
-        return { success: false, message: 'Submission failed. Please try again.' };
+        [['feature-title', 'title-count'], ['feature-description', 'desc-count']].forEach(([field, counter]) => {
+            document.getElementById(field)?.addEventListener('input', (event) => { document.getElementById(counter).textContent = event.target.value.length; });
+        });
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const submit = form.querySelector('button[type="submit"]');
+            submit.disabled = true;
+            submit.textContent = 'Submitting…';
+            const title = document.getElementById('feature-title').value.trim();
+            const description = document.getElementById('feature-description').value.trim();
+            const email = document.getElementById('feature-email').value.trim();
+            const status = document.getElementById('feature-form-status');
+            if (!title || !description) {
+                submit.disabled = false;
+                submit.textContent = 'Submit feature request';
+                if (status) status.textContent = 'Add a title and description before submitting.';
+                return;
+            }
+            const result = await submitFeature(title, description, email);
+            submit.disabled = false;
+            submit.textContent = 'Submit feature request';
+            if (result.success) {
+                form.reset();
+                document.getElementById('title-count').textContent = '0';
+                document.getElementById('desc-count').textContent = '0';
+                closeModal();
+            } else if (status) {
+                status.textContent = result.message;
+            }
+        });
     }
-}
 
-// ========================================
-// LOAD ON PAGE READY
-// ========================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    loadRoadmapFeatures();
-});
+    window.submitFeature = submitFeature;
+    window.voteForFeature = voteForFeature;
+    document.addEventListener('DOMContentLoaded', () => { initModal(); loadRoadmapFeatures(); });
+})();

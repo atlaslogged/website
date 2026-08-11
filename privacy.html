@@ -9,8 +9,8 @@
     <meta name="keywords" content="privacy policy, location tracking, data privacy">
     <meta name="author" content="Atlas Codes">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#2563eb">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://app.chatwoot.com https://country.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://app.chatwoot.com https://country.is; frame-src https://app.chatwoot.com; font-src 'self';">
+    <meta name="theme-color" content="#f6f2e9">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://app.chatwoot.com https://api.country.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://app.chatwoot.com https://api.country.is; frame-src https://app.chatwoot.com; font-src 'self';">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- Canonical URL -->
@@ -51,61 +51,12 @@
 
     <!-- Skip to main content link for accessibility -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
-
-    <!-- Mobile Menu Backdrop -->
-    <div class="mobile-backdrop" id="mobileBackdrop"></div>
-
-    <!-- SVG Filters for Subtle Glass Distortion (Chromium only) -->
-    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
-        <defs>
-            <!-- Very subtle distortion filter - barely noticeable -->
-            <filter id="glass-distortion" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
-                <feTurbulence
-                    type="fractalNoise"
-                    baseFrequency="0.01 0.01"
-                    numOctaves="1"
-                    seed="7"
-                    result="noise" />
-                <feGaussianBlur in="noise" stdDeviation="1.5" result="smooth" />
-                <feDisplacementMap
-                    in="SourceGraphic"
-                    in2="smooth"
-                    scale="3"
-                    xChannelSelector="R"
-                    yChannelSelector="G" />
-            </filter>
-        </defs>
-    </svg>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="nav-content">
-                <div class="nav-brand">
-                    <a href="index.html"
-                        style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
-                        <img src="assets/logo.png" alt="Atlas Logged" class="nav-logo">
-                        <span class="brand-name">Atlas Logged</span>
-                    </a>
-                </div>
-
-                <!-- Hamburger Menu Button -->
-                <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </button>
-
-                <!-- Navigation Links -->
-                <div class="nav-links" id="navLinks">
-                    <a href="index.html">Home</a>
-                    <a href="index.html#features">Features</a>
-                    <a href="privacy.html">Privacy</a>
-                    <a href="location-faq.html">Location FAQ</a>
-                    <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214?itscg=30200&itsct=apps_box_badge&mttnsubad=6538725214"
-                        target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download Atlas Logged (opens in new window)">Download</a>
-                </div>
-            </div>
+    <div class="mobile-backdrop" id="mobileBackdrop" aria-hidden="true"></div>
+    <nav aria-label="Primary navigation">
+        <div class="container nav-content">
+            <div class="nav-brand"><a href="index.html"><img src="assets/logo.png" alt="" class="nav-logo"><span class="brand-name">Atlas Logged</span></a></div>
+            <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+            <div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="changelog.html">What's new</a><a href="roadmap.html">Roadmap</a><a href="privacy.html" aria-current="page">Privacy</a><a href="location-faq.html">FAQ</a><a href="https://apps.apple.com/us/app/atlas-logged/id6538725214" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download Atlas Logged (opens in new window)">Download</a></div>
         </div>
     </nav>
 
@@ -116,10 +67,12 @@
         <div class="container">
             <img src="assets/logo.png" alt="Atlas Logged" class="section-logo">
             <h1>Privacy Policy</h1>
+            <p class="section-kicker">A plain-language privacy ledger</p>
             <p class="intro">Your privacy matters. Here's exactly how we handle your data.</p>
+            <nav class="policy-index" aria-label="Privacy policy sections"><p class="metadata-label">On this page</p><ol><li><a href="#data-collection">Data collection</a></li><li><a href="#apple-services">Apple services</a></li><li><a href="#data-storage">Data storage</a></li><li><a href="#multi-device-sync">Multi-device sync</a></li><li><a href="#photos-access">Photos</a></li><li><a href="#notifications">Notifications</a></li><li><a href="#customer-support">Customer support</a></li><li><a href="#location-detection">Country detection</a></li><li><a href="#location-data">Location data</a></li><li><a href="#security">Security</a></li><li><a href="#children-privacy">Children's privacy</a></li><li><a href="#policy-changes">Policy changes</a></li><li><a href="#contact">Contact</a></li></ol></nav>
 
             <div class="policy-content">
-                <div class="policy-section">
+                <div class="policy-section" id="data-collection">
                     <h3>Data Collection</h3>
                     <p><strong>Atlas Logged does not collect, store, or transmit any personal data, location data, or
                             any other user-generated content to our servers.</strong></p>
@@ -129,7 +82,7 @@
                         when contacting us for help (see Customer Support section below).</p>
                 </div>
 
-                <div class="policy-section">
+                <div class="policy-section" id="apple-services">
                     <h3>Apple Services Only</h3>
                     <p><strong>Atlas Logged uses exclusively Apple's built-in frameworks and services for core functionality:</strong></p>
                     <ul>
@@ -144,7 +97,7 @@
                         with if you choose to contact us for help.</p>
                 </div>
 
-                <div class="policy-section">
+                <div class="policy-section" id="data-storage">
                     <h3>Data Storage</h3>
                     <p>Information like travel history and calendar entries is stored locally on your device using iOS
                         Core Data.</p>
@@ -157,7 +110,7 @@
                         if you choose to contact us.</p>
                 </div>
 
-                <div class="policy-section">
+                <div class="policy-section" id="multi-device-sync">
                     <h3>Multi-Device Sync (Optional)</h3>
                     <p><strong>This feature is entirely optional and requires iCloud to be enabled.</strong></p>
                     <p>If you choose to use Atlas Logged on multiple devices, device metadata is synchronized via Apple's
@@ -170,14 +123,15 @@
                         <li><strong>Last active timestamp</strong></li>
                         <li><strong>Primary/secondary device role</strong></li>
                     </ul>
-                    <p>This metadata helps coordinate which device actively tracks your location. Only iPhones can be
-                        primary tracking devices; iPads and Macs are always secondary devices that display data but don't
-                        actively track location.</p>
+                    <p>This metadata helps coordinate device roles. Only iPhones can be primary devices. Secondary devices
+                        can record their own location when the operating system and current authorization allow it, but they do
+                        not calculate the primary calendar and timeline locally. On Mac, recording is limited to while the app
+                        is in the foreground because macOS does not offer the iPhone's Always authorization mode.</p>
                     <p>All device metadata is synced exclusively through Apple's iCloud using encrypted CloudKit
                         containers. This data is only accessible to your devices signed in with your Apple ID.</p>
                 </div>
 
-                <div class="policy-section">
+                <div class="policy-section" id="photos-access">
                     <h3>Photos Access (Optional)</h3>
                     <p><strong>Photo library access is entirely optional and requires your explicit permission.</strong>
                     </p>
@@ -195,7 +149,7 @@
                         functionality.</p>
                 </div>
 
-                <div class="policy-section">
+                <div class="policy-section" id="notifications">
                     <h3>Notifications (Optional)</h3>
                     <p><strong>Notification access is entirely optional and requires your explicit permission.</strong></p>
                     <p>If you enable notifications, Atlas Logged can send you local notifications about your travel activity
@@ -205,7 +159,7 @@
                         iOS Settings.</p>
                 </div>
 
-                <div class="policy-section">
+                <div class="policy-section" id="customer-support">
                     <h3>Customer Support & Live Chat (Optional)</h3>
                     <p><strong>Contacting support is entirely optional and only happens when you choose to reach out for help.</strong></p>
                     <p>Atlas Logged offers in-app customer support via live chat powered by Chatwoot, a third-party customer
@@ -267,10 +221,10 @@
                         and running: <code>ChatwootConsent.clearGeoCache()</code>, or by simply closing and reopening your browser.</p>
 
                     <p>For more information about Country.is and their privacy practices, visit
-                        <a href="https://country.is/" target="_blank" rel="noopener noreferrer">country.is</a>.</p>
+                        <a href="https://api.country.is/" target="_blank" rel="noopener noreferrer">country.is</a>.</p>
                 </div>
 
-                <div class="policy-section">
+                <div class="policy-section" id="location-data">
                     <h3>Location Data</h3>
                     <p><strong>Location tracking requires your explicit permission and uses Apple's Core Location framework
                             exclusively.</strong></p>
@@ -286,7 +240,7 @@
                         You can change or revoke location permissions at any time in iOS Settings.</p>
                 </div>
 
-                <div class="policy-section">
+                <div class="policy-section" id="security">
                     <h3>Security</h3>
                     <p>Data security depends on your individual device protection. We recommend:</p>
                     <ul>
@@ -296,20 +250,20 @@
                     </ul>
                 </div>
 
-                <div class="policy-section">
+                <div class="policy-section" id="children-privacy">
                     <h3>Children's Privacy</h3>
                     <p>Because all data is stored locally and we collect no information, there are no specific data
                         collection considerations for children's privacy. The app does not distinguish between users of
                         different ages.</p>
                 </div>
 
-                <div class="policy-section">
+                <div class="policy-section" id="policy-changes">
                     <h3>Changes to This Policy</h3>
                     <p>We will notify users of any significant changes to this privacy policy through app updates. Users
                         can opt-out of any external data sharing features if they are introduced in the future.</p>
                 </div>
 
-                <div class="policy-section">
+                <div class="policy-section" id="contact">
                     <h3>Contact</h3>
                     <p>For questions about this privacy policy, contact us at: <a
                             href="mailto:support@atlascodes.ai">support@atlascodes.ai</a></p>
@@ -338,38 +292,14 @@
                 target="_blank" rel="noopener noreferrer" style="display: inline-block;" aria-label="Download Atlas Logged on the App Store (opens in new window)">
                 <img src="assets/app-store-badge.svg"
                     alt="Download on the App Store"
-                    style="width: 246px; height: 82px; vertical-align: middle; object-fit: contain;" loading="lazy" />
+                    style="width: 246px; height: 82px; vertical-align: middle; object-fit: contain;" />
             </a>
 
             <p class="requirements">Requires iOS 17.0 or later</p>
         </div>
     </section>
     </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="assets/logo.png" alt="Atlas Logged">
-                    <p>Privacy-first location tracking</p>
-                </div>
-                <div class="footer-links">
-                    <a href="index.html#features">Features</a>
-                    <a href="changelog.html">What's New</a>
-                    <a href="roadmap.html">Roadmap</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="location-faq.html">Location FAQ</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Atlas Logged. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Feature Flags (must load before cookie-consent) -->
-    <script src="js/feature-flags.js"></script>
+    <footer><div class="container"><div class="footer-content"><div class="footer-brand"><img src="assets/logo.png" alt=""><p>Privacy-first location tracking for iOS.</p></div><div class="footer-links"><a href="index.html">Home</a><a href="changelog.html">What's new</a><a href="roadmap.html">Roadmap</a><a href="privacy.html" aria-current="page">Privacy policy</a><a href="location-faq.html">Location FAQ</a></div></div><div class="footer-bottom"><p>© 2026 Atlas Logged. All rights reserved.</p></div></div></footer>
 
     <!-- Cookie Consent & Chatwoot Widget -->
     <!-- Chatwoot loads conditionally based on consent (GDPR-compliant) -->

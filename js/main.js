@@ -1,139 +1,135 @@
-// Simple JavaScript for Atlas Logged Landing Page
+// Shared progressive enhancement for the Atlas Logged public site.
+(function () {
+    'use strict';
 
-document.addEventListener('DOMContentLoaded', () => {
-    detectSafari();
-    initFAQ();
-    initSmoothScroll();
-    initMobileMenu();
-});
+    const focusableSelector = [
+        'a[href]',
+        'button:not([disabled])',
+        'input:not([disabled])',
+        'select:not([disabled])',
+        'textarea:not([disabled])',
+        '[tabindex]:not([tabindex="-1"])'
+    ].join(', ');
 
-// Safari Browser Detection
-function detectSafari() {
-    // Detect Safari browser (but not Chrome which also has Safari in UA)
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-    if (isSafari) {
-        document.documentElement.classList.add('is-safari');
-    }
-}
-
-// FAQ Accordion
-function initFAQ() {
-    const faqItems = document.querySelectorAll('.faq-item');
-
-    // Exit early if no FAQ items exist on this page
-    if (faqItems.length === 0) {
-        return;
+    function prefersReducedMotion() {
+        return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     }
 
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
+    function initAnchors() {
+        document.querySelectorAll('a[href^="#"]').forEach((link) => {
+            link.addEventListener('click', (event) => {
+                const hash = link.getAttribute('href');
+                const target = hash ? document.querySelector(hash) : null;
+                if (!target) return;
 
-        // Function to toggle FAQ
-        const toggleFAQ = () => {
-            const isOpen = item.classList.contains('open');
-
-            // Close all FAQs and update their aria-expanded
-            faqItems.forEach(faq => {
-                faq.classList.remove('open');
-                const faqQuestion = faq.querySelector('.faq-question');
-                if (faqQuestion) {
-                    faqQuestion.setAttribute('aria-expanded', 'false');
-                }
-            });
-
-            // Toggle current FAQ
-            if (!isOpen) {
-                item.classList.add('open');
-                question.setAttribute('aria-expanded', 'true');
-            }
-        };
-
-        // Click event
-        question.addEventListener('click', toggleFAQ);
-
-        // Keyboard support for accessibility (Enter and Space keys)
-        question.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault(); // Prevent page scroll on Space
-                toggleFAQ();
-            }
-        });
-    });
-}
-
-// Smooth Scroll for Navigation
-function initSmoothScroll() {
-    const smoothScrollLinks = document.querySelectorAll('a[href^="#"]');
-
-    // Exit early if no anchor links exist
-    if (smoothScrollLinks.length === 0) {
-        return;
-    }
-
-    smoothScrollLinks.forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-
-            if (target) {
-                const offsetTop = target.offsetTop - 80; // Account for fixed nav
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
+                event.preventDefault();
+                target.scrollIntoView({
+                    behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+                    block: 'start'
                 });
-            }
+
+                if (link.classList.contains('skip-to-content')) {
+                    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+                    target.focus({ preventScroll: true });
+                }
+
+                history.pushState(null, '', hash);
+            });
         });
-    });
-}
+    }
 
-// Mobile Menu Toggle
-function initMobileMenu() {
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-    const backdrop = document.getElementById('mobileBackdrop');
-
-    if (hamburger && navLinks) {
-        const closeMenu = () => {
-            hamburger.classList.remove('active');
-            hamburger.setAttribute('aria-expanded', 'false');
-            navLinks.classList.remove('active');
-            if (backdrop) backdrop.classList.remove('active');
-        };
-
-        const openMenu = () => {
-            hamburger.classList.add('active');
-            hamburger.setAttribute('aria-expanded', 'true');
-            navLinks.classList.add('active');
-            if (backdrop) backdrop.classList.add('active');
-        };
-
-        const toggleMenu = () => {
-            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
-            if (isExpanded) {
-                closeMenu();
-            } else {
-                openMenu();
+    function initMotionSensitiveMedia() {
+        document.querySelectorAll('[data-autoplay-media]').forEach((media) => {
+            if (prefersReducedMotion()) {
+                media.pause();
+                return;
             }
-        };
 
-        hamburger.addEventListener('click', toggleMenu);
-
-        // Close menu when clicking a link
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', closeMenu);
+            const playback = media.play();
+            if (playback instanceof Promise) playback.catch(() => {});
         });
+    }
 
-        // Close menu when clicking backdrop
-        if (backdrop) {
-            backdrop.addEventListener('click', closeMenu);
+    function initMobileMenu() {
+        const trigger = document.getElementById('hamburger');
+        const menu = document.getElementById('navLinks');
+        const backdrop = document.getElementById('mobileBackdrop');
+        if (!trigger || !menu || !backdrop) return;
+
+        let previouslyFocused = null;
+        const isMobile = () => window.matchMedia('(max-width: 760px)').matches;
+        const isOpen = () => trigger.getAttribute('aria-expanded') === 'true';
+
+        function setMenu(open) {
+            if (open === isOpen()) return;
+
+            if (open) {
+                previouslyFocused = document.activeElement;
+                menu.inert = false;
+                trigger.classList.add('active');
+                menu.classList.add('active');
+                backdrop.classList.add('active');
+                trigger.setAttribute('aria-expanded', 'true');
+                trigger.setAttribute('aria-label', 'Close navigation menu');
+                document.body.classList.add('menu-open');
+                const firstLink = menu.querySelector(focusableSelector);
+                if (firstLink) firstLink.focus();
+                return;
+            }
+
+            trigger.classList.remove('active');
+            menu.classList.remove('active');
+            backdrop.classList.remove('active');
+            trigger.setAttribute('aria-expanded', 'false');
+            trigger.setAttribute('aria-label', 'Open navigation menu');
+            document.body.classList.remove('menu-open');
+            menu.inert = isMobile();
+            if (previouslyFocused instanceof HTMLElement) previouslyFocused.focus();
+            previouslyFocused = null;
         }
 
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
-                closeMenu();
+        menu.inert = isMobile();
+
+        trigger.addEventListener('click', () => setMenu(!isOpen()));
+        backdrop.addEventListener('click', () => setMenu(false));
+        menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenu(false)));
+
+        document.addEventListener('keydown', (event) => {
+            if (!isOpen()) return;
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                setMenu(false);
+                return;
+            }
+            if (event.key !== 'Tab') return;
+
+            const elements = [...menu.querySelectorAll(focusableSelector)].filter((element) => !element.hasAttribute('hidden'));
+            if (elements.length === 0) return;
+            const first = elements[0];
+            const last = elements[elements.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
             }
         });
+
+        window.addEventListener('resize', () => {
+            if (!isMobile()) {
+                if (isOpen()) setMenu(false);
+                menu.inert = false;
+                return;
+            }
+
+            if (!isOpen()) menu.inert = true;
+        });
     }
-}
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initAnchors();
+        initMobileMenu();
+        initMotionSensitiveMedia();
+    });
+})();

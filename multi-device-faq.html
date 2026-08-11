@@ -9,8 +9,8 @@
     <meta name="keywords" content="multi-device, iCloud sync, location tracking, iOS, iPad, Mac">
     <meta name="author" content="Atlas Codes">
     <meta name="robots" content="noindex, nofollow">
-    <meta name="theme-color" content="#2563eb">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://app.chatwoot.com https://country.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://app.chatwoot.com https://country.is; frame-src https://app.chatwoot.com; font-src 'self';">
+    <meta name="theme-color" content="#f6f2e9">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://app.chatwoot.com https://api.country.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://app.chatwoot.com https://api.country.is; frame-src https://app.chatwoot.com; font-src 'self';">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- Canonical URL -->
@@ -51,61 +51,12 @@
 
     <!-- Skip to main content link for accessibility -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
-
-    <!-- Mobile Menu Backdrop -->
-    <div class="mobile-backdrop" id="mobileBackdrop"></div>
-
-    <!-- SVG Filters for Subtle Glass Distortion (Chromium only) -->
-    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
-        <defs>
-            <!-- Very subtle distortion filter - barely noticeable -->
-            <filter id="glass-distortion" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
-                <feTurbulence
-                    type="fractalNoise"
-                    baseFrequency="0.01 0.01"
-                    numOctaves="1"
-                    seed="7"
-                    result="noise" />
-                <feGaussianBlur in="noise" stdDeviation="1.5" result="smooth" />
-                <feDisplacementMap
-                    in="SourceGraphic"
-                    in2="smooth"
-                    scale="3"
-                    xChannelSelector="R"
-                    yChannelSelector="G" />
-            </filter>
-        </defs>
-    </svg>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="nav-content">
-                <div class="nav-brand">
-                    <a href="index.html"
-                        style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
-                        <img src="assets/logo.png" alt="Atlas Logged" class="nav-logo">
-                        <span class="brand-name">Atlas Logged</span>
-                    </a>
-                </div>
-
-                <!-- Hamburger Menu Button -->
-                <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </button>
-
-                <!-- Navigation Links -->
-                <div class="nav-links" id="navLinks">
-                    <a href="index.html">Home</a>
-                    <a href="index.html#features">Features</a>
-                    <a href="privacy.html">Privacy</a>
-                    <a href="location-faq.html">Location FAQ</a>
-                    <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214?itscg=30200&itsct=apps_box_badge&mttnsubad=6538725214"
-                        target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download Atlas Logged (opens in new window)">Download</a>
-                </div>
-            </div>
+    <div class="mobile-backdrop" id="mobileBackdrop" aria-hidden="true"></div>
+    <nav aria-label="Primary navigation">
+        <div class="container nav-content">
+            <div class="nav-brand"><a href="index.html"><img src="assets/logo.png" alt="" class="nav-logo"><span class="brand-name">Atlas Logged</span></a></div>
+            <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+            <div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="changelog.html">What's new</a><a href="roadmap.html">Roadmap</a><a href="privacy.html">Privacy</a><a href="location-faq.html">FAQ</a><a href="https://apps.apple.com/us/app/atlas-logged/id6538725214" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download Atlas Logged (opens in new window)">Download</a></div>
         </div>
     </nav>
 
@@ -115,34 +66,32 @@
         <section class="privacy">
         <div class="container">
             <img src="assets/logo.png" alt="Atlas Logged" class="section-logo">
+            <p class="section-kicker">Your devices, coordinated by iCloud</p>
             <h1>Multi-Device FAQ</h1>
             <p class="intro">Use Atlas Logged across all your Apple devices with seamless iCloud sync.</p>
 
             <!-- Video Demo -->
-            <div style="margin: 2rem auto; max-width: 600px;">
-                <video autoplay loop muted playsinline style="width: 100%; border-radius: 16px; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);">
-                    <source src="assets/multi-device-demo.mov" type="video/quicktime">
+            <figure class="media-proof">
+                <video loop muted playsinline controls preload="metadata" data-autoplay-media aria-label="Atlas Logged multi-device sync demonstration">
                     <source src="assets/multi-device-demo.mp4" type="video/mp4">
+                    <source src="assets/multi-device-demo.mov" type="video/quicktime">
                     Your browser does not support the video tag.
                 </video>
-                <p style="text-align: center; color: #64748b; font-size: 0.875rem; margin-top: 0.75rem;">Multi-device sync in action (6.7s)</p>
-            </div>
-
-            <!-- Screenshot Preview -->
-            <div style="margin: 2rem auto; max-width: 600px;">
-                <img src="assets/multi-device-screenshot.png" alt="Atlas Logged Devices screen showing primary iPhone and secondary Mac" style="width: 100%; border-radius: 16px; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);">
-                <p style="text-align: center; color: #64748b; font-size: 0.875rem; margin-top: 0.75rem;">The Devices screen in Atlas Logged showing multi-device setup</p>
-            </div>
+                <figcaption class="media-caption">Multi-device sync in action · 6.7 seconds</figcaption>
+            </figure>
 
             <div class="policy-content">
-                <div class="policy-section">
-                    <h3>How Multi-Device Works</h3>
+                <details class="faq-item" open>
+                    <summary>How Multi-Device Works</summary>
+                    <div class="faq-answer">
                     <p>Atlas Logged supports running on multiple devices simultaneously using iCloud sync. Your devices coordinate automatically to track your location efficiently while keeping all your data synchronized.</p>
                     <p><strong>Key concept:</strong> One device acts as the <strong>Primary Device</strong> which populates your calendar, travel history, and all the main features. <strong>Secondary Devices</strong> can also track location data, but with less accuracy—useful for getting a general idea of where that device has been.</p>
                 </div>
+                </details>
 
-                <div class="policy-section">
-                    <h3>Primary vs Secondary Devices</h3>
+                <details class="faq-item">
+                    <summary>Primary vs Secondary Devices</summary>
+                    <div class="faq-answer">
                     <p><strong>Primary Device:</strong></p>
                     <ul>
                         <li>Populates your calendar, travel history, and all main features</li>
@@ -161,9 +110,11 @@
                     </ul>
                     <p><strong>Why the difference?</strong> iPads and Macs don't support continuous background location like iPhones do. They can still capture location when the app is active or during significant location changes, giving you some tracking data—just not as comprehensive as an iPhone.</p>
                 </div>
+                </details>
 
-                <div class="policy-section">
-                    <h3>Setting Up Multiple Devices</h3>
+                <details class="faq-item">
+                    <summary>Setting Up Multiple Devices</summary>
+                    <div class="faq-answer">
                     <ol>
                         <li><strong>Enable iCloud Sync</strong> - Go to Settings and turn on iCloud sync on all devices</li>
                         <li><strong>Sign in with the same Apple ID</strong> - All devices must use the same iCloud account</li>
@@ -171,9 +122,11 @@
                         <li><strong>Devices appear automatically</strong> - Once sync is enabled, devices will show up in the Devices screen</li>
                     </ol>
                 </div>
+                </details>
 
-                <div class="policy-section">
-                    <h3>Device Locations Map</h3>
+                <details class="faq-item">
+                    <summary>Device Locations Map</summary>
+                    <div class="faq-answer">
                     <p>The Devices screen shows a map with all your devices' last known locations. This helps you:</p>
                     <ul>
                         <li>See which device is currently tracking</li>
@@ -181,9 +134,11 @@
                         <li>Understand where each device was last active</li>
                     </ul>
                 </div>
+                </details>
 
-                <div class="policy-section">
-                    <h3>Switching Primary Device</h3>
+                <details class="faq-item">
+                    <summary>Switching Primary Device</summary>
+                    <div class="faq-answer">
                     <p>You can change which iPhone is the primary tracking device:</p>
                     <ol>
                         <li>Open Atlas Logged on the iPhone you want to make primary</li>
@@ -192,9 +147,11 @@
                     </ol>
                     <p><strong>Note:</strong> iPads and Macs cannot be primary devices as they don't support continuous background location tracking. They can still track as secondary devices, but with less accuracy.</p>
                 </div>
+                </details>
 
-                <div class="policy-section">
-                    <h3>Privacy & Security</h3>
+                <details class="faq-item">
+                    <summary>Privacy & Security</summary>
+                    <div class="faq-answer">
                     <p>Your multi-device data remains private:</p>
                     <ul>
                         <li>All sync happens through your personal iCloud account</li>
@@ -204,9 +161,11 @@
                     </ul>
                     <p>For full details, see our <a href="privacy.html#multi-device-sync">Privacy Policy</a>.</p>
                 </div>
+                </details>
 
-                <div class="policy-section">
-                    <h3>Troubleshooting</h3>
+                <details class="faq-item">
+                    <summary>Troubleshooting</summary>
+                    <div class="faq-answer">
                     <p><strong>Device not appearing?</strong></p>
                     <ul>
                         <li>Ensure iCloud sync is enabled on both devices</li>
@@ -221,6 +180,7 @@
                         <li>Check that the device isn't in Low Power Mode</li>
                     </ul>
                 </div>
+                </details>
 
                 <div class="policy-highlight">
                     <p><strong>Summary:</strong> Your primary iPhone handles the main tracking that populates your calendar and travel history. Secondary devices (iPads, Macs, or other iPhones) can also capture location data with less accuracy—useful for seeing where that device has been. All data syncs securely through iCloud with end-to-end encryption.</p>
@@ -237,41 +197,17 @@
             <p>Start tracking your travels with complete privacy</p>
 
             <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214?itscg=30200&itsct=apps_box_badge&mttnsubad=6538725214"
-                target="_blank" rel="noopener noreferrer" style="display: inline-block;" aria-label="Download Atlas Logged on the App Store (opens in new window)">
+                target="_blank" rel="noopener noreferrer" class="app-store-link" aria-label="Download Atlas Logged on the App Store (opens in new window)">
                 <img src="assets/app-store-badge.svg"
                     alt="Download on the App Store"
-                    style="width: 246px; height: 82px; vertical-align: middle; object-fit: contain;" loading="lazy" />
+                    style="width: 246px; height: 82px; vertical-align: middle; object-fit: contain;" />
             </a>
 
             <p class="requirements">Requires iOS 17.0 or later</p>
         </div>
     </section>
     </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <img src="assets/logo.png" alt="Atlas Logged">
-                    <p>Privacy-first location tracking</p>
-                </div>
-                <div class="footer-links">
-                    <a href="index.html#features">Features</a>
-                    <a href="changelog.html">What's New</a>
-                    <a href="roadmap.html">Roadmap</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="location-faq.html">Location FAQ</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Atlas Logged. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Feature Flags (must load before cookie-consent) -->
-    <script src="js/feature-flags.js"></script>
+    <footer><div class="container"><div class="footer-content"><div class="footer-brand"><img src="assets/logo.png" alt=""><p>Privacy-first location tracking for iOS.</p></div><div class="footer-links"><a href="index.html">Home</a><a href="changelog.html">What's new</a><a href="roadmap.html">Roadmap</a><a href="privacy.html">Privacy policy</a><a href="location-faq.html">Location FAQ</a></div></div><div class="footer-bottom"><p>© 2026 Atlas Logged. All rights reserved.</p></div></div></footer>
 
     <!-- Cookie Consent & Chatwoot Widget -->
     <!-- Chatwoot loads conditionally based on consent (GDPR-compliant) -->
