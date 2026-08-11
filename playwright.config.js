@@ -15,7 +15,7 @@ module.exports = defineConfig({
 
   // Reporter configuration
   reporter: [
-    ['html', { outputFolder: 'test/e2e-results/html' }],
+    ['html', { outputFolder: 'test/e2e-results/html', open: 'never' }],
     ['list'] // Console output
   ],
 
