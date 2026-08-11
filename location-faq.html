@@ -9,7 +9,7 @@
     <meta name="keywords" content="location tracking, location permissions, privacy, battery life, FAQ">
     <meta name="author" content="Atlas Codes">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#f6f2e9">
+    <meta name="theme-color" content="#ffffff">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://app.chatwoot.com https://api.country.is; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://app.chatwoot.com https://api.country.is; frame-src https://app.chatwoot.com; font-src 'self';">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
@@ -90,6 +90,9 @@
     <link rel="dns-prefetch" href="https://apps.apple.com">
 
     <!-- Custom CSS -->
+    <script src="js/theme.js"></script>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Favicon -->
@@ -102,13 +105,23 @@
     <!-- Skip to main content link for accessibility -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
     <div class="mobile-backdrop" id="mobileBackdrop" aria-hidden="true"></div>
-    <nav aria-label="Primary navigation">
-        <div class="container nav-content">
-            <div class="nav-brand"><a href="index.html"><img src="assets/logo.png" alt="" class="nav-logo"><span class="brand-name">Atlas Logged</span></a></div>
-            <button class="hamburger" id="hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
-            <div class="nav-links" id="navLinks"><a href="index.html">Home</a><a href="changelog.html">What's new</a><a href="roadmap.html">Roadmap</a><a href="privacy.html">Privacy</a><a href="location-faq.html" aria-current="page">FAQ</a><a href="https://apps.apple.com/us/app/atlas-logged/id6538725214" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download Atlas Logged (opens in new window)">Download</a></div>
-        </div>
-    </nav>
+    <header class="atlas-bar">
+        <a class="sig" href="index.html" aria-label="Atlas Logged home">
+            <img src="assets/logo.png" alt="" width="24" height="24">
+            <b>atlaslogged<span>.com</span></b>
+        </a>
+        <span class="suffix">/ a private travel journal</span>
+        <button class="nav-burger" id="hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks"></button>
+        <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+                <a href="index.html">home</a>
+                <a href="changelog.html">what's new</a>
+                <a href="roadmap.html">roadmap</a>
+                <a href="privacy.html">privacy</a>
+                <a href="location-faq.html" aria-current="page">faq</a>
+                <a href="https://apps.apple.com/us/app/atlas-logged/id6538725214" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="Download Atlas Logged (opens in new window)">download</a>
+        </nav>
+        <button class="theme-cycle" type="button" data-theme-cycle data-theme-current="white" aria-label="Colour theme: white. Switch to black." title="white → black"></button>
+    </header>
 
     <!-- Main Content -->
     <main id="main-content">
@@ -192,7 +205,7 @@
             </div>
         </section>
     </main>
-    <footer><div class="container"><div class="footer-content"><div class="footer-brand"><img src="assets/logo.png" alt=""><p>Privacy-first location tracking for iOS.</p></div><div class="footer-links"><a href="index.html">Home</a><a href="changelog.html">What's new</a><a href="roadmap.html">Roadmap</a><a href="privacy.html">Privacy policy</a><a href="location-faq.html" aria-current="page">Location FAQ</a></div></div><div class="footer-bottom"><p>© 2026 Atlas Logged. All rights reserved.</p></div></div></footer>
+    <footer><div class="container"><div class="footer-content"><div class="footer-brand"><img src="assets/logo.png" alt=""><p>Privacy-first location tracking for iOS.</p></div><div class="footer-links"><a href="index.html">Home</a><a href="changelog.html">What's new</a><a href="roadmap.html">Roadmap</a><a href="privacy.html">Privacy policy</a><a href="location-faq.html" aria-current="page">Location FAQ</a></div></div><div class="footer-bottom"><p>© 2026 Atlas Logged. All rights reserved.</p><p>brought to you by <a href="https://atlascodes.ai" target="_blank" rel="noopener noreferrer">Atlas Codes</a></p></div></div></footer>
 
     <script src="js/cookie-consent.js"></script>
     <script src="js/main.js"></script>
