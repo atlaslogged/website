@@ -4,7 +4,7 @@
 Atlas Logged is a mobile application for iOS that provides automatic location tracking with configurable privacy levels. The app is designed for travelers who want to maintain a personal travel history without compromising their privacy. All location data is stored locally on the user's device by default, with optional iCloud sync.
 
 ## Latest Updates
-- [What's New](https://atlaslogged.com/changelog.html): Latest version (1.1.20) includes Travel Planner, iCloud sync options, and Arabic language support
+- [What's New](https://atlaslogged.com/changelog.html): Latest published version (1.1.18) — Minor Changes and Fixes
 - [Roadmap](https://atlaslogged.com/roadmap.html): Upcoming features including photo integration, smart predictions, and visa tracking
 
 ## Product Information
@@ -50,27 +50,8 @@ Atlas Logged is ideal for travelers, digital nomads, frequent business travelers
 
 
 
+
 # Version History
-
-## Version 1.2.0 - 2026-03-30
-Our Biggest Update Yet
-
-### New Features
-- **Multi-Device Support**: Use Atlas Logged across all your devices with seamless sync
-- **iCloud Backup**: Your travel history is now safely backed up to iCloud
-- **Photo History**: See your photos alongside your country stays and travel timeline
-- **Feedback & Support**: New feedback screen to easily get in touch with us
-
-### Improvements
-- **Onboarding Experience**: Completely redesigned setup flow to get you started faster
-- **Calendar Reliability**: Stable month navigation and background refresh without snapping back
-- **Performance**: Faster app launch and smoother navigation throughout
-
-### Bug Fixes
-- **Calendar & Logging**: Fixed date selection, range validation, and manual log consistency
-- **Stability**: Numerous bug fixes and reliability improvements
-
----
 
 ## Version 1.1.18 - 2025-02-12
 Minor Changes and Fixes
@@ -117,6 +98,14 @@ Spanish Localization
 
 ### New Features
 - **Spanish Localization**: Full Spanish language support
+
+---
+
+## Version 1.1.14 - 2025-01-28
+Bug Fixes
+
+### Bug Fixes
+- **Bug Fixes**: Various minor bug fixes and stability improvements
 
 ---
 
