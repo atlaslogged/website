@@ -51,6 +51,7 @@ Atlas Logged is ideal for travelers, digital nomads, frequent business travelers
 
 
 
+
 # Version History
 
 ## Version 1.1.18 - 2025-02-12
