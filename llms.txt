@@ -4,7 +4,7 @@
 Atlas Logged is a mobile application for iOS that provides automatic location tracking with configurable privacy levels. The app is designed for travelers who want to maintain a personal travel history without compromising their privacy. All location data is stored locally on the user's device by default, with optional iCloud sync.
 
 ## Latest Updates
-- [What's New](https://atlaslogged.com/changelog.html): Latest published version (1.1.18) — Minor Changes and Fixes
+- [What's New](https://atlaslogged.com/changelog.html): Latest published version (1.2.0) — Our Biggest Update Yet
 - [Roadmap](https://atlaslogged.com/roadmap.html): Upcoming features including photo integration, smart predictions, and visa tracking
 
 ## Product Information
@@ -52,7 +52,39 @@ Atlas Logged is ideal for travelers, digital nomads, frequent business travelers
 
 
 
+
 # Version History
+
+## Version 1.2.0 - 2026-08-22
+Our Biggest Update Yet
+
+### New Features
+- **Multi-Device Support**: Use Atlas Logged across all your devices with seamless sync
+- **iCloud Backup**: Your travel history is now safely backed up to iCloud
+- **Photo History**: See your photos alongside your country stays and travel timeline
+- **Feedback & Support**: New feedback screen to easily get in touch with us
+- **Time Zones, Done Right**: Each day now knows the time zone you lived it in: photos line up with your travel days, and a new Time Zone card shows the local time there versus your time now.
+- **Home Nations, Day by Day**: Trips around the UK now show England, Scotland, Wales and Northern Ireland per day - a drive from Wales into England shows both, in order.
+- **Device Fleet Management**: Declare the devices you use, claim this one from the list, and rename, retire or hand over the primary role from Settings.
+
+### Improvements
+- **Onboarding Experience**: Completely redesigned setup flow to get you started faster
+- **Calendar Reliability**: Stable month navigation and background refresh without snapping back
+- **Performance**: Faster app launch and smoother navigation throughout
+- **Switching to a New iPhone**: Upgrading moves your setup and history over cleanly - and the app now recognises your phone even when the system misreports its storage size.
+- **Editing Your Stays**: Swipe to edit, hide or delete stays in your travel history, with clearer handling while history is being recalculated.
+
+### Bug Fixes
+- **Tracking Recovery**: Location tracking can no longer be silently left off after testing or unusual shutdowns - the app now detects and recovers from GPS outages.
+- **Phantom Stays**: Fixed rare cases where the calendar invented days in a country you had already left.
+- **Battery**: Fixed a loop that could quietly recalculate your history over and over after a long gap in tracking.
+- **Offline Mode**: Choosing “stay offline” during setup now truly stays offline.
+- **Photo History**: The photo timeline scan no longer looks stuck at 100% while it finishes up.
+- **Privacy Settings**: Clearer wording for the highest-accuracy location level.
+- **Calendar & Logging**: Fixed date selection, range validation, and manual log consistency
+- **Stability**: Numerous bug fixes and reliability improvements
+
+---
 
 ## Version 1.1.18 - 2025-02-12
 Minor Changes and Fixes
@@ -99,14 +131,6 @@ Spanish Localization
 
 ### New Features
 - **Spanish Localization**: Full Spanish language support
-
----
-
-## Version 1.1.14 - 2025-01-28
-Bug Fixes
-
-### Bug Fixes
-- **Bug Fixes**: Various minor bug fixes and stability improvements
 
 ---
 
