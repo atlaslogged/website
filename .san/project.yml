@@ -10,3 +10,8 @@ repository:
     - https://github.com/atlaslogged/website.git
 integrations:
   copy: []
+  analytics:
+    provider: goatcounter
+    siteId: atlaslogged
+    publicDashboard: https://atlaslogged.goatcounter.com
+    searchConsole: pending
