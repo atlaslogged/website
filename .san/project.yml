@@ -12,6 +12,8 @@ integrations:
   copy: []
   analytics:
     provider: goatcounter
+    domain: atlaslogged.com
+    searchConsoleProperty: sc-domain:atlaslogged.com
     siteId: atlaslogged
     publicDashboard: https://atlaslogged.goatcounter.com
     searchConsole: pending
