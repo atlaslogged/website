@@ -1,0 +1,5 @@
+# Pre-existing check-site.py failures on main (2026-09-29), ignored until fixed.
+# One entry per line: a failure as printed (without "FAIL ") or a bare page path.
+atlas/index.html: missing meta description  # atlas app page, no description yet
+atlas/viewer/globe.html: missing meta description  # embedded viewer, not a landing page
+atlas/viewer/index.html: missing meta description  # embedded viewer, not a landing page
