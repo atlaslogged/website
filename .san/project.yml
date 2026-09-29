@@ -1,0 +1,19 @@
+schemaVersion: 1
+id: website
+name: website
+kind: webApplication
+summary: "the static marketing, privacy, faq, changelog and roadmap site for atlaslogged.com, plus the apps script backend behind roadmap voting."
+capabilities: []
+platforms: []
+repository:
+  canonicalRemotes:
+    - https://github.com/atlaslogged/website.git
+integrations:
+  copy: []
+  analytics:
+    provider: goatcounter
+    domain: atlaslogged.com
+    searchConsoleProperty: sc-domain:atlaslogged.com
+    siteId: atlaslogged
+    publicDashboard: https://atlaslogged.goatcounter.com
+    searchConsole: pending
