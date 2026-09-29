@@ -115,3 +115,13 @@ The canonical App Store privacy URL is:
 ## Deployment
 
 GitHub Pages publication, pushing a branch, Apps Script deployment, and live roadmap mutations are outward-facing actions. Preview and verify locally first, then obtain explicit approval before publishing.
+
+## Cloud sessions
+
+For Claude Code on the web (claude.ai/code). `scripts/cloud-setup.sh` runs automatically at session start (`npm ci` plus Playwright Chromium).
+
+- Check: `python3 scripts/check-site.py` (titles, meta descriptions, internal links; known gaps in `scripts/check-site.baseline`).
+- Smoke tests: start `npm run dev` in the background, then `npm test` (one changelog-disclosure test fails on main as of 2026-09-29).
+- Work on the session's branch and open a PR. Merging to `main` publishes atlaslogged.com via GitHub Pages, so never push `main`.
+- Never run `deploy.sh`, `npm run apps-script:*`, or the live commands listed under "Safe validation".
+- No secrets are available or needed. Keep changes small and in the site's editorial voice.
